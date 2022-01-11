@@ -22,6 +22,11 @@ export default {
          validation: (Rule) => Rule.required()
       },
       {
+         name: 'erecieptLink',
+         title: 'E-Receipt Link',
+         type: 'url'
+      },
+      {
          name: 'facebookLink',
          title: 'Facebook Link',
          type: 'url'
