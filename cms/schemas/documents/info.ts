@@ -4,6 +4,18 @@ export default {
    type: 'document',
    fields: [
       {
+         title: 'Logo (lg)',
+         name: 'logo',
+         type: 'imageWithAlt',
+         validation: (Rule) => Rule.required()
+      },
+      {
+         title: 'Logo (sm)',
+         name: 'logoSmall',
+         type: 'imageWithAlt',
+         validation: (Rule) => Rule.required()
+      },
+      {
          name: 'address',
          title: 'Address',
          type: 'string',
