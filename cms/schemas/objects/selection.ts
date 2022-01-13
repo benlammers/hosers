@@ -20,6 +20,11 @@ export default {
          title: 'Price',
          type: 'number',
          validation: (Rule) => Rule.required()
+      },
+      {
+         name: 'unit',
+         title: 'Units (optional)',
+         type: 'string'
       }
    ]
 };
