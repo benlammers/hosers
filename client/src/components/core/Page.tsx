@@ -2,11 +2,15 @@ import React from 'react';
 import { Footer } from './Footer';
 import { Header } from './Header';
 
-export const Page: React.FC = ({ children }) => {
+interface Props {
+   className?: string;
+}
+
+export const Page: React.FC<Props> = ({ children, className }) => {
    return (
       <main className="grid grid-rows-[max-content_1fr_max-content] h-full">
          <Header />
-         <div>{children}</div>
+         <div className={className}>{children}</div>
          <Footer />
       </main>
    );

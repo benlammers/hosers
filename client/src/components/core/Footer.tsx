@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { FooterQuery } from '../../generated/types';
 import { LocationIcon } from '../icons/LocationIcon';
@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
    const { sanityInfo: data } = useStaticQuery<FooterQuery>(query);
 
    return (
-      <footer>
+      <footer className="relative">
          <div className="flex flex-col gap-12 p-12 items-center lg:grid lg:grid-cols-[max-content_1fr_max-content] lg:grid-rows-[max-content_max-content] lg:gap-8 font-body bg-hosers-blue text-white transition-colors">
             <div className="w-full xs:w-64 lg:w-56">
                <GatsbyImage image={data.logo.image.asset.gatsbyImageData} alt={data.logo.alt} />
@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
                   <li>Locations</li>
                </ul>
             </div>
-            <div className="flex flex-col w-[15.5rem] xs:w-max xs:items-center lg:w-[15.5rem] lg:items-start lg:row-span-2 gap-3 text-lg">
+            <div className="flex flex-col w-[15.5rem] xs:w-full sm:items-center lg:w-[15.5rem] lg:items-start lg:row-span-2 gap-3 text-lg">
                <span className="hidden lg:block text-xl font-bold">Contact</span>
                <span className="flex gap-2">
                   <LocationIcon className="w-9 h-min xs:w-[unset] xs:h-5 lg:h-min lg:w-9 mt-1" />
@@ -57,10 +57,13 @@ export const Footer: React.FC = () => {
             <span>&copy; {new Date().getFullYear()} Hosers Car Wash</span>
             <span className="text-gray-400">
                Site developed by{' '}
-               <a href="https://www.benlammers.dev/" target="_blank" className="cursor-pointer underline underline-offset-4 hover:text-gray-100">
+               <a className="cursor-pointer underline underline-offset-4 hover:text-gray-100" href="https://www.benlammers.dev/" target="_blank">
                   Ben Lammers
                </a>
             </span>
+            <Link className="cursor-pointer underline underline-offset-4 hover:text-gray-100 text-sm md:absolute bottom-0 right-0 p-4" to="/credits">
+               Credits
+            </Link>
          </div>
       </footer>
    );
