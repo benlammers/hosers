@@ -16,8 +16,8 @@ export default {
          validation: (Rule) => Rule.required()
       },
       {
-         name: 'debitCredit',
-         title: 'Debit & Credit',
+         name: 'payment',
+         title: 'Payment',
          type: 'section',
          validation: (Rule) => Rule.required()
       },

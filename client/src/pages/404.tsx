@@ -1,54 +1,22 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import { Link } from 'gatsby';
+import React from 'react';
+import { PathData } from '../components/core/Header';
+import { Page } from '../components/core/Page';
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+const NotFoundPage: React.FC = () => {
+   return (
+      <Page className="p-16 flex flex-col gap-4 items-center text-hosers-gray">
+         <h1 className="text-3xl font-bold">Page not found</h1>
+         <p className="text-lg">Sorry we could not find the page you were looking for</p>
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
+         <h2 className="text-2xl font-bold mt-12">Available Pages</h2>
+         {Object.keys(PathData).map((path, index) => (
+            <Link className="text-lg font-bold hover:text-gray-500 transition-colors" key={index} to={PathData[path].path}>
+               {PathData[path].name}
+            </Link>
+         ))}
+      </Page>
+   );
+};
 
-// markup
-const NotFoundPage = () => {
-  return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
-  )
-}
-
-export default NotFoundPage
+export default NotFoundPage;

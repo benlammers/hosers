@@ -5,6 +5,40 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { MenuIcon } from '../icons/MenuIcon';
 import { Drawer } from './Drawer';
 
+export type Path = 'home' | 'locations' | 'services' | 'giftCards' | 'payment' | 'contactUs';
+
+type PathData = {
+   path: string;
+   name: string;
+};
+
+export const PathData: Record<Path, PathData> = {
+   home: {
+      path: '/',
+      name: 'Home'
+   },
+   locations: {
+      path: '/locations',
+      name: 'Locations'
+   },
+   services: {
+      path: '/services',
+      name: 'Services'
+   },
+   giftCards: {
+      path: '/#gift-cards',
+      name: 'Gift Cards'
+   },
+   payment: {
+      path: '/#payment',
+      name: 'Debit & Credit'
+   },
+   contactUs: {
+      path: '/contact-us',
+      name: 'Contact Us'
+   }
+};
+
 export const Header: React.FC = () => {
    const { sanityInfo: data } = useStaticQuery<HeaderQuery>(query);
    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
@@ -13,15 +47,16 @@ export const Header: React.FC = () => {
    const closeDrawer = () => setIsDrawerOpen(false);
 
    return (
-      <header className="bg-hosers-blue h-header px-3 flex justify-between items-center">
+      <header className="bg-hosers-blue w-full h-header px-3 flex justify-between items-center fixed top-0 z-40 shadow-lg">
          <Link className="w-36" to="/">
             <GatsbyImage image={data.logo.image.asset.gatsbyImageData} alt={data.logo.alt} />
          </Link>
-         <ul className="hidden lg:flex gap-12 text-white items-center text-lg font-body font-bold">
-            <li>Services</li>
-            <li>Locations</li>
-            <li>History</li>
-            <li>Contact Us</li>
+         <ul className="hidden lg:flex gap-6 text-white items-center text-lg font-body font-normal">
+            {Object.keys(PathData).map((path) => (
+               <li key={path}>
+                  <Link to={PathData[path].path}>{PathData[path].name}</Link>
+               </li>
+            ))}
             <li>
                <a className="btn-red rounded-sm py-1 gap-0 font-normal" href={data.erecieptLink} target="_blank">
                   Get E-Reciepts

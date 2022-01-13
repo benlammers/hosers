@@ -1,9 +1,10 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, navigate, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { DrawerQuery } from '../../generated/types';
 import { CrossIcon } from '../icons/CrossIcon';
 import { ExternalIcon } from '../icons/ExternalIcon';
+import { Path, PathData } from './Header';
 
 interface Props {
    isOpen?: boolean;
@@ -13,11 +14,16 @@ interface Props {
 export const Drawer: React.FC<Props> = ({ isOpen, close }) => {
    const { sanityInfo: data } = useStaticQuery<DrawerQuery>(query);
 
+   const handleNavigation = (path: Path) => {
+      navigate(PathData[path].path);
+      close();
+   };
+
    return (
       <div
          className={`fixed  ${
             isOpen ? 'translate-x-0' : 'translate-x-full'
-         } transition-transform grid lg:hidden grid-rows-[max-content_1fr] h-screen w-full inset-0 z-20 bg-white`}
+         } transition-transform grid lg:hidden grid-rows-[max-content_1fr] h-screen w-full inset-0 z-20 bg-white pointer-events-[all]`}
       >
          <div className="h-header px-3 flex justify-between items-center">
             <div className={`w-36 ${isOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
@@ -28,13 +34,14 @@ export const Drawer: React.FC<Props> = ({ isOpen, close }) => {
             </button>
          </div>
          <div className="flex flex-col gap-16 justify-center items-center mb-24">
-            <ul className="flex flex-col gap-6 items-center font-bold font-body text-2xl text-hosers-gray">
-               <li>Home</li>
-               <li>Locations</li>
-               <li>Services</li>
-               <li>Gift Cards</li>
-               <li>Debit &amp; Credit</li>
-               <li>Contact Us</li>
+            <ul className="flex flex-col gap-6 items-center font-body text-2xl text-hosers-gray">
+               {Object.keys(PathData).map((path) => (
+                  <li key={path}>
+                     <button className="font-bold" onClick={() => handleNavigation(path as Path)}>
+                        {PathData[path].name}
+                     </button>
+                  </li>
+               ))}
             </ul>
             <a className="btn-blue" href={data.erecieptLink} target="_blank">
                <span>Get E-Receipts</span>

@@ -7,6 +7,7 @@ import { PhoneIcon } from '../icons/PhoneIcon';
 import { MailIcon } from '../icons/MailIcon';
 import { FacebookIcon } from '../icons/FacebookIcon';
 import { InstagramIcon } from '../icons/InstagramIcon';
+import { PathData } from './Header';
 
 export const Footer: React.FC = () => {
    const { sanityInfo: data } = useStaticQuery<FooterQuery>(query);
@@ -20,13 +21,11 @@ export const Footer: React.FC = () => {
             <div className="hidden row-span-2 lg:grid gap-2 justify-self-center">
                <span className="text-xl font-bold">Information</span>
                <ul className="grid grid-cols-3 text-lg gap-y-2 gap-x-8 xl:gap-x-[12vw]">
-                  <li>Home</li>
-                  <li>Get E-Receipts</li>
-                  <li>History</li>
-                  <li>Services</li>
-                  <li>Gift Cards</li>
-                  <li>Contact Us</li>
-                  <li>Locations</li>
+                  {Object.keys(PathData).map((path) => (
+                     <li>
+                        <Link to={PathData[path].path}>{PathData[path].name}</Link>
+                     </li>
+                  ))}
                </ul>
             </div>
             <div className="flex flex-col w-[15.5rem] xs:w-full sm:items-center lg:w-[15.5rem] lg:items-start lg:row-span-2 gap-3 text-lg">
@@ -61,7 +60,10 @@ export const Footer: React.FC = () => {
                   Ben Lammers
                </a>
             </span>
-            <Link className="cursor-pointer underline underline-offset-4 hover:text-gray-100 text-sm md:absolute bottom-0 right-0 p-4" to="/credits">
+            <Link
+               className="text-gray-400 cursor-pointer underline underline-offset-4 hover:text-gray-100 text-sm md:absolute bottom-0 right-0 p-4"
+               to="/credits"
+            >
                Credits
             </Link>
          </div>

@@ -10,11 +10,15 @@
    .h-banner {
       height: calc(100vh - 64px);
    }
+
+   .m-scroll {
+      scroll-margin-top: 64px;
+   }
 }
 
 @layer components {
    .btn-full {
-      @apply rounded-full px-4 py-3 font-body w-max text-white items-center grid grid-cols-[1fr_max-content] gap-2 text-lg;
+      @apply rounded-full px-4 py-2 font-body w-max text-white items-center grid grid-cols-[1fr_max-content] gap-2 text-lg;
    }
 
    .btn-blue {
@@ -23,6 +27,18 @@
 
    .btn-red {
       @apply btn-full bg-hosers-red;
+   }
+
+   .btn-text {
+      @apply w-max font-bold items-center grid grid-cols-[1fr_max-content] gap-1 text-lg;
+   }
+
+   .btn-text-blue {
+      @apply btn-text text-hosers-blue;
+   }
+
+   .btn-text-red {
+      @apply btn-text text-hosers-red;
    }
 }
 

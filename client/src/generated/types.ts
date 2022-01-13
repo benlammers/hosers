@@ -1799,23 +1799,23 @@ export type QuerySanityHomeArgs = {
   _createdAt: InputMaybe<DateQueryOperatorInput>;
   _id: InputMaybe<StringQueryOperatorInput>;
   _key: InputMaybe<StringQueryOperatorInput>;
-  _rawDebitCredit: InputMaybe<JsonQueryOperatorInput>;
   _rawGiftCards: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
   _rawLocations: InputMaybe<JsonQueryOperatorInput>;
+  _rawPayment: InputMaybe<JsonQueryOperatorInput>;
   _rawServices: InputMaybe<JsonQueryOperatorInput>;
   _rawTimeline: InputMaybe<JsonQueryOperatorInput>;
   _rev: InputMaybe<StringQueryOperatorInput>;
   _type: InputMaybe<StringQueryOperatorInput>;
   _updatedAt: InputMaybe<DateQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
-  debitCredit: InputMaybe<SanitySectionFilterInput>;
   giftCards: InputMaybe<SanitySectionFilterInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   image: InputMaybe<SanityImageWithAltFilterInput>;
   internal: InputMaybe<InternalFilterInput>;
   locations: InputMaybe<SanitySectionFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
+  payment: InputMaybe<SanitySectionFilterInput>;
   services: InputMaybe<SanitySectionFilterInput>;
   timeline: InputMaybe<SanitySectionFilterInput>;
 };
@@ -2380,23 +2380,23 @@ export type SanityHome = Node & SanityDocument & {
   _createdAt: Maybe<Scalars['Date']>;
   _id: Maybe<Scalars['String']>;
   _key: Maybe<Scalars['String']>;
-  _rawDebitCredit: Maybe<Scalars['JSON']>;
   _rawGiftCards: Maybe<Scalars['JSON']>;
   _rawImage: Maybe<Scalars['JSON']>;
   _rawLocations: Maybe<Scalars['JSON']>;
+  _rawPayment: Maybe<Scalars['JSON']>;
   _rawServices: Maybe<Scalars['JSON']>;
   _rawTimeline: Maybe<Scalars['JSON']>;
   _rev: Maybe<Scalars['String']>;
   _type: Maybe<Scalars['String']>;
   _updatedAt: Maybe<Scalars['Date']>;
   children: Array<Node>;
-  debitCredit: Maybe<SanitySection>;
   giftCards: Maybe<SanitySection>;
   id: Scalars['ID'];
   image: Maybe<SanityImageWithAlt>;
   internal: Internal;
   locations: Maybe<SanitySection>;
   parent: Maybe<Node>;
+  payment: Maybe<SanitySection>;
   services: Maybe<SanitySection>;
   timeline: Maybe<SanitySection>;
 };
@@ -2407,11 +2407,6 @@ export type SanityHome_CreatedAtArgs = {
   formatString: InputMaybe<Scalars['String']>;
   fromNow: InputMaybe<Scalars['Boolean']>;
   locale: InputMaybe<Scalars['String']>;
-};
-
-
-export type SanityHome_RawDebitCreditArgs = {
-  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
 
@@ -2426,6 +2421,11 @@ export type SanityHome_RawImageArgs = {
 
 
 export type SanityHome_RawLocationsArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityHome_RawPaymentArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -2498,10 +2498,10 @@ export enum SanityHomeFieldsEnum {
   _createdAt = '_createdAt',
   _id = '_id',
   _key = '_key',
-  _rawDebitCredit = '_rawDebitCredit',
   _rawGiftCards = '_rawGiftCards',
   _rawImage = '_rawImage',
   _rawLocations = '_rawLocations',
+  _rawPayment = '_rawPayment',
   _rawServices = '_rawServices',
   _rawTimeline = '_rawTimeline',
   _rev = '_rev',
@@ -2546,12 +2546,6 @@ export enum SanityHomeFieldsEnum {
   children___parent___internal___type = 'children___parent___internal___type',
   children___parent___parent___children = 'children___parent___parent___children',
   children___parent___parent___id = 'children___parent___parent___id',
-  debitCredit____key = 'debitCredit____key',
-  debitCredit____type = 'debitCredit____type',
-  debitCredit___description = 'debitCredit___description',
-  debitCredit___isHidden = 'debitCredit___isHidden',
-  debitCredit___name = 'debitCredit___name',
-  debitCredit___title = 'debitCredit___title',
   giftCards____key = 'giftCards____key',
   giftCards____type = 'giftCards____type',
   giftCards___description = 'giftCards___description',
@@ -2656,6 +2650,12 @@ export enum SanityHomeFieldsEnum {
   parent___parent___internal___type = 'parent___parent___internal___type',
   parent___parent___parent___children = 'parent___parent___parent___children',
   parent___parent___parent___id = 'parent___parent___parent___id',
+  payment____key = 'payment____key',
+  payment____type = 'payment____type',
+  payment___description = 'payment___description',
+  payment___isHidden = 'payment___isHidden',
+  payment___name = 'payment___name',
+  payment___title = 'payment___title',
   services____key = 'services____key',
   services____type = 'services____type',
   services___description = 'services___description',
@@ -2674,23 +2674,23 @@ export type SanityHomeFilterInput = {
   _createdAt: InputMaybe<DateQueryOperatorInput>;
   _id: InputMaybe<StringQueryOperatorInput>;
   _key: InputMaybe<StringQueryOperatorInput>;
-  _rawDebitCredit: InputMaybe<JsonQueryOperatorInput>;
   _rawGiftCards: InputMaybe<JsonQueryOperatorInput>;
   _rawImage: InputMaybe<JsonQueryOperatorInput>;
   _rawLocations: InputMaybe<JsonQueryOperatorInput>;
+  _rawPayment: InputMaybe<JsonQueryOperatorInput>;
   _rawServices: InputMaybe<JsonQueryOperatorInput>;
   _rawTimeline: InputMaybe<JsonQueryOperatorInput>;
   _rev: InputMaybe<StringQueryOperatorInput>;
   _type: InputMaybe<StringQueryOperatorInput>;
   _updatedAt: InputMaybe<DateQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
-  debitCredit: InputMaybe<SanitySectionFilterInput>;
   giftCards: InputMaybe<SanitySectionFilterInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   image: InputMaybe<SanityImageWithAltFilterInput>;
   internal: InputMaybe<InternalFilterInput>;
   locations: InputMaybe<SanitySectionFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
+  payment: InputMaybe<SanitySectionFilterInput>;
   services: InputMaybe<SanitySectionFilterInput>;
   timeline: InputMaybe<SanitySectionFilterInput>;
 };
@@ -4088,6 +4088,7 @@ export enum SanityLocationFieldsEnum {
   services___selections___desciption = 'services___selections___desciption',
   services___selections___name = 'services___selections___name',
   services___selections___price = 'services___selections___price',
+  services___selections___unit = 'services___selections___unit',
   services___slug____key = 'services___slug____key',
   services___slug____type = 'services___slug____type',
   services___slug___current = 'services___slug___current',
@@ -4197,6 +4198,7 @@ export type SanitySelection = {
   desciption: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   price: Maybe<Scalars['Float']>;
+  unit: Maybe<Scalars['String']>;
 };
 
 export type SanitySelectionFilterInput = {
@@ -4205,6 +4207,7 @@ export type SanitySelectionFilterInput = {
   desciption: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   price: InputMaybe<FloatQueryOperatorInput>;
+  unit: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SanitySelectionFilterListInput = {
@@ -4516,6 +4519,7 @@ export enum SanityServiceFieldsEnum {
   selections___desciption = 'selections___desciption',
   selections___name = 'selections___name',
   selections___price = 'selections___price',
+  selections___unit = 'selections___unit',
   slug____key = 'slug____key',
   slug____type = 'slug____type',
   slug___current = 'slug___current'
@@ -6127,3 +6131,28 @@ export type BannerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type BannerQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', bannerImage: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', x: number, y: number } } } }, sanityInfo: { __typename?: 'SanityInfo', logo: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } } };
+
+export type GiftCardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GiftCardsQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', giftCards: { __typename?: 'SanitySection', name: string, title: string, description: string } }, sanityInfo: { __typename?: 'SanityInfo', phoneNumber: string } };
+
+export type LocationsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LocationsQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', locations: { __typename?: 'SanitySection', title: string, name: string } } };
+
+export type PaymentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PaymentQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', payment: { __typename?: 'SanitySection', name: string, title: string, description: string } }, sanityInfo: { __typename?: 'SanityInfo', erecieptLink: string } };
+
+export type ServicesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ServicesQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', services: { __typename?: 'SanitySection', name: string, title: string } }, serviceIcons: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> }, highlightedServices: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
+
+export type TimelineQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TimelineQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', timeline: { __typename?: 'SanitySection', name: string, title: string } }, allSanityTimelineItem: { __typename?: 'SanityTimelineItemConnection', nodes: Array<{ __typename?: 'SanityTimelineItem', id: string, date: any, description: string, title: string, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
