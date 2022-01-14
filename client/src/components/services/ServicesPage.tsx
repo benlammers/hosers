@@ -4,9 +4,10 @@ import { Page } from '../core/Page';
 import { ServiceItem } from './ServiceItem';
 import { Meta } from '../util/Meta';
 import { Heading } from '../util/Heading';
+import { ServicesPageQuery } from '../../generated/types';
 
 export const ServicesPage: React.FC = () => {
-   const { allSanityService } = useStaticQuery(query);
+   const { allSanityService } = useStaticQuery<ServicesPageQuery>(query);
 
    return (
       <Page className="p-6 pb-12">

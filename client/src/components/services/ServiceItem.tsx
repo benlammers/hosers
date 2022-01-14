@@ -9,7 +9,7 @@ interface Props {
    slug: {
       current: string;
    };
-   icon?: {
+   icon: {
       image: {
          __typename?: 'SanityImage';
          asset: {
@@ -28,7 +28,10 @@ export const ServiceItem: React.FC<Props> = ({ name, description, icon, slug }) 
          <div className="w-10 h-10">
             <GatsbyImage image={icon.image.asset.gatsbyImageData} alt={icon.alt} />
          </div>
-         <h3 className="text-hosers-gray font-bold text-2xl">{name}</h3>
+         <div className="flex justify-between items-center">
+            <h3 className="text-hosers-gray font-bold text-2xl">{name}</h3>
+            <span>x3</span>
+         </div>
          <p className="text-hosers-gray text-lg">{description}</p>
          <Link className="btn-text-blue" to={`/service/${slug.current}`}>
             <span>Learn More</span>

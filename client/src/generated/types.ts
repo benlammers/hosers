@@ -1897,7 +1897,7 @@ export type QuerySanityLocationArgs = {
   metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
-  services: InputMaybe<SanityServiceFilterListInput>;
+  services: InputMaybe<SanityAvailableServiceFilterListInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
 };
 
@@ -2032,6 +2032,32 @@ export type SanityAssetSourceDataFilterInput = {
   id: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   url: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type SanityAvailableService = {
+  __typename?: 'SanityAvailableService';
+  _key: Maybe<Scalars['String']>;
+  _rawService: Maybe<Scalars['JSON']>;
+  _type: Maybe<Scalars['String']>;
+  amount: Maybe<Scalars['Float']>;
+  service: Maybe<SanityService>;
+};
+
+
+export type SanityAvailableService_RawServiceArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanityAvailableServiceFilterInput = {
+  _key: InputMaybe<StringQueryOperatorInput>;
+  _rawService: InputMaybe<JsonQueryOperatorInput>;
+  _type: InputMaybe<StringQueryOperatorInput>;
+  amount: InputMaybe<FloatQueryOperatorInput>;
+  service: InputMaybe<SanityServiceFilterInput>;
+};
+
+export type SanityAvailableServiceFilterListInput = {
+  elemMatch: InputMaybe<SanityAvailableServiceFilterInput>;
 };
 
 export type SanityBlock = {
@@ -3777,7 +3803,7 @@ export type SanityLocation = Node & SanityDocument & {
   metaDescription: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   parent: Maybe<Node>;
-  services: Maybe<Array<Maybe<SanityService>>>;
+  services: Maybe<Array<Maybe<SanityAvailableService>>>;
   slug: Maybe<SanitySlug>;
 };
 
@@ -4016,87 +4042,57 @@ export enum SanityLocationFieldsEnum {
   parent___parent___parent___children = 'parent___parent___parent___children',
   parent___parent___parent___id = 'parent___parent___parent___id',
   services = 'services',
-  services____createdAt = 'services____createdAt',
-  services____id = 'services____id',
   services____key = 'services____key',
-  services____rawIcon = 'services____rawIcon',
-  services____rawImages = 'services____rawImages',
-  services____rawSelections = 'services____rawSelections',
-  services____rawSlug = 'services____rawSlug',
-  services____rev = 'services____rev',
+  services____rawService = 'services____rawService',
   services____type = 'services____type',
-  services____updatedAt = 'services____updatedAt',
-  services___children = 'services___children',
-  services___children___children = 'services___children___children',
-  services___children___children___children = 'services___children___children___children',
-  services___children___children___id = 'services___children___children___id',
-  services___children___id = 'services___children___id',
-  services___children___internal___content = 'services___children___internal___content',
-  services___children___internal___contentDigest = 'services___children___internal___contentDigest',
-  services___children___internal___description = 'services___children___internal___description',
-  services___children___internal___fieldOwners = 'services___children___internal___fieldOwners',
-  services___children___internal___ignoreType = 'services___children___internal___ignoreType',
-  services___children___internal___mediaType = 'services___children___internal___mediaType',
-  services___children___internal___owner = 'services___children___internal___owner',
-  services___children___internal___type = 'services___children___internal___type',
-  services___children___parent___children = 'services___children___parent___children',
-  services___children___parent___id = 'services___children___parent___id',
-  services___description = 'services___description',
-  services___icon____key = 'services___icon____key',
-  services___icon____rawImage = 'services___icon____rawImage',
-  services___icon____type = 'services___icon____type',
-  services___icon___alt = 'services___icon___alt',
-  services___icon___image____key = 'services___icon___image____key',
-  services___icon___image____rawAsset = 'services___icon___image____rawAsset',
-  services___icon___image____rawCrop = 'services___icon___image____rawCrop',
-  services___icon___image____rawHotspot = 'services___icon___image____rawHotspot',
-  services___icon___image____type = 'services___icon___image____type',
-  services___id = 'services___id',
-  services___images = 'services___images',
-  services___images____key = 'services___images____key',
-  services___images____rawImage = 'services___images____rawImage',
-  services___images____type = 'services___images____type',
-  services___images___alt = 'services___images___alt',
-  services___images___image____key = 'services___images___image____key',
-  services___images___image____rawAsset = 'services___images___image____rawAsset',
-  services___images___image____rawCrop = 'services___images___image____rawCrop',
-  services___images___image____rawHotspot = 'services___images___image____rawHotspot',
-  services___images___image____type = 'services___images___image____type',
-  services___internal___content = 'services___internal___content',
-  services___internal___contentDigest = 'services___internal___contentDigest',
-  services___internal___description = 'services___internal___description',
-  services___internal___fieldOwners = 'services___internal___fieldOwners',
-  services___internal___ignoreType = 'services___internal___ignoreType',
-  services___internal___mediaType = 'services___internal___mediaType',
-  services___internal___owner = 'services___internal___owner',
-  services___internal___type = 'services___internal___type',
-  services___isHighlighted = 'services___isHighlighted',
-  services___metaDescription = 'services___metaDescription',
-  services___name = 'services___name',
-  services___parent___children = 'services___parent___children',
-  services___parent___children___children = 'services___parent___children___children',
-  services___parent___children___id = 'services___parent___children___id',
-  services___parent___id = 'services___parent___id',
-  services___parent___internal___content = 'services___parent___internal___content',
-  services___parent___internal___contentDigest = 'services___parent___internal___contentDigest',
-  services___parent___internal___description = 'services___parent___internal___description',
-  services___parent___internal___fieldOwners = 'services___parent___internal___fieldOwners',
-  services___parent___internal___ignoreType = 'services___parent___internal___ignoreType',
-  services___parent___internal___mediaType = 'services___parent___internal___mediaType',
-  services___parent___internal___owner = 'services___parent___internal___owner',
-  services___parent___internal___type = 'services___parent___internal___type',
-  services___parent___parent___children = 'services___parent___parent___children',
-  services___parent___parent___id = 'services___parent___parent___id',
-  services___selections = 'services___selections',
-  services___selections____key = 'services___selections____key',
-  services___selections____type = 'services___selections____type',
-  services___selections___description = 'services___selections___description',
-  services___selections___name = 'services___selections___name',
-  services___selections___price = 'services___selections___price',
-  services___selections___unit = 'services___selections___unit',
-  services___slug____key = 'services___slug____key',
-  services___slug____type = 'services___slug____type',
-  services___slug___current = 'services___slug___current',
+  services___amount = 'services___amount',
+  services___service____createdAt = 'services___service____createdAt',
+  services___service____id = 'services___service____id',
+  services___service____key = 'services___service____key',
+  services___service____rawIcon = 'services___service____rawIcon',
+  services___service____rawImages = 'services___service____rawImages',
+  services___service____rawSelections = 'services___service____rawSelections',
+  services___service____rawSlug = 'services___service____rawSlug',
+  services___service____rev = 'services___service____rev',
+  services___service____type = 'services___service____type',
+  services___service____updatedAt = 'services___service____updatedAt',
+  services___service___children = 'services___service___children',
+  services___service___children___children = 'services___service___children___children',
+  services___service___children___id = 'services___service___children___id',
+  services___service___description = 'services___service___description',
+  services___service___icon____key = 'services___service___icon____key',
+  services___service___icon____rawImage = 'services___service___icon____rawImage',
+  services___service___icon____type = 'services___service___icon____type',
+  services___service___icon___alt = 'services___service___icon___alt',
+  services___service___id = 'services___service___id',
+  services___service___images = 'services___service___images',
+  services___service___images____key = 'services___service___images____key',
+  services___service___images____rawImage = 'services___service___images____rawImage',
+  services___service___images____type = 'services___service___images____type',
+  services___service___images___alt = 'services___service___images___alt',
+  services___service___internal___content = 'services___service___internal___content',
+  services___service___internal___contentDigest = 'services___service___internal___contentDigest',
+  services___service___internal___description = 'services___service___internal___description',
+  services___service___internal___fieldOwners = 'services___service___internal___fieldOwners',
+  services___service___internal___ignoreType = 'services___service___internal___ignoreType',
+  services___service___internal___mediaType = 'services___service___internal___mediaType',
+  services___service___internal___owner = 'services___service___internal___owner',
+  services___service___internal___type = 'services___service___internal___type',
+  services___service___isHighlighted = 'services___service___isHighlighted',
+  services___service___metaDescription = 'services___service___metaDescription',
+  services___service___name = 'services___service___name',
+  services___service___parent___children = 'services___service___parent___children',
+  services___service___parent___id = 'services___service___parent___id',
+  services___service___selections = 'services___service___selections',
+  services___service___selections____key = 'services___service___selections____key',
+  services___service___selections____type = 'services___service___selections____type',
+  services___service___selections___description = 'services___service___selections___description',
+  services___service___selections___name = 'services___service___selections___name',
+  services___service___selections___price = 'services___service___selections___price',
+  services___service___selections___unit = 'services___service___selections___unit',
+  services___service___slug____key = 'services___service___slug____key',
+  services___service___slug____type = 'services___service___slug____type',
+  services___service___slug___current = 'services___service___slug___current',
   slug____key = 'slug____key',
   slug____type = 'slug____type',
   slug___current = 'slug___current'
@@ -4122,7 +4118,7 @@ export type SanityLocationFilterInput = {
   metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
-  services: InputMaybe<SanityServiceFilterListInput>;
+  services: InputMaybe<SanityAvailableServiceFilterListInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
 };
 
@@ -4556,10 +4552,6 @@ export type SanityServiceFilterInput = {
   parent: InputMaybe<NodeFilterInput>;
   selections: InputMaybe<SanitySelectionFilterListInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
-};
-
-export type SanityServiceFilterListInput = {
-  elemMatch: InputMaybe<SanityServiceFilterInput>;
 };
 
 export type SanityServiceGroupConnection = {
@@ -6166,14 +6158,26 @@ export type TimelineQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TimelineQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', timeline: { __typename?: 'SanitySection', name: string, title: string } }, allSanityTimelineItem: { __typename?: 'SanityTimelineItemConnection', nodes: Array<{ __typename?: 'SanityTimelineItem', id: string, date: any, description: string, title: string, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
 
+export type LocationsPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LocationsPageQuery = { __typename?: 'Query', allSanityLocation: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string } }> } };
+
 export type ServicesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ServicesPageQuery = { __typename?: 'Query', allSanityService: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
+
+export type LocationPageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type LocationPageQuery = { __typename?: 'Query', location: { __typename?: 'SanityLocation', id: string, name: string, address: string, metaDescription: string } };
 
 export type ServicePageQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type ServicePageQuery = { __typename?: 'Query', service: { __typename?: 'SanityService', id: string, name: string, description: string, metaDescription: string, selections: Array<{ __typename?: 'SanitySelection', description: string, name: string, price: number, unit: string }>, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }> }, otherServices: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
+export type ServicePageQuery = { __typename?: 'Query', service: { __typename?: 'SanityService', id: string, name: string, description: string, metaDescription: string, selections: Array<{ __typename?: 'SanitySelection', description: string, name: string, price: number, unit: string }>, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }> }, otherServices: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> }, availableLocations: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string } }> } };

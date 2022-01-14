@@ -20,6 +20,12 @@ export default {
          validation: (Rule) => Rule.required()
       },
       {
+         name: 'metaDescription',
+         title: 'Meta Description',
+         type: 'string',
+         validation: (Rule) => Rule.required()
+      },
+      {
          name: 'address',
          title: 'Address',
          type: 'string',
@@ -35,23 +41,14 @@ export default {
          name: 'images',
          title: 'Images',
          type: 'array',
-         of: [
-            {
-               type: 'imageWithAlt'
-            }
-         ],
+         of: [{ type: 'imageWithAlt' }],
          validation: (Rule) => Rule.required()
       },
       {
          name: 'services',
          title: 'Available Services',
          type: 'array',
-         of: [
-            {
-               type: 'reference',
-               to: [{ type: 'service' }]
-            }
-         ],
+         of: [{ type: 'availableService' }],
          validation: (Rule) => Rule.required()
       }
    ]

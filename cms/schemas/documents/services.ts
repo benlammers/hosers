@@ -20,6 +20,12 @@ export default {
          validation: (Rule) => Rule.required()
       },
       {
+         name: 'metaDescription',
+         title: 'Meta Description',
+         type: 'string',
+         validation: (Rule) => Rule.required()
+      },
+      {
          name: 'description',
          title: 'Description',
          type: 'text',

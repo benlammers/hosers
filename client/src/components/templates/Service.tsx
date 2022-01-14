@@ -8,9 +8,12 @@ import { Heading } from '../util/Heading';
 import { ServiceItem } from '../services/ServiceItem';
 import { ChevronRightIcon } from '../icons/ChevronRightIcon';
 import { ImageCarousel } from '../util/ImageCarousel';
+import { LocationItem } from '../locations/LocationItem';
 
 const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
-   const { service, otherServices } = data;
+   const { service, otherServices, availableLocations } = data;
+
+   console.log({ availableLocations });
 
    return (
       <Page className="flex flex-col gap-3">
@@ -42,13 +45,18 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
             </div>
          </div>
          <ImageCarousel images={service.images} />
-         <div className="p-6 flex flex-col gap-3">
+         <div className="p-6">
             <Heading border="border-hosers-red">
                <h2 className="text-3xl font-bold">Available Locations</h2>
             </Heading>
+            <div className="flex flex-col gap-6">
+               {availableLocations.nodes.map((location) => (
+                  <LocationItem key={location.id} {...location} />
+               ))}
+            </div>
          </div>
          <div className="h-48 w-full bg-green-300" />
-         <div className="p-6 flex flex-col gap-3">
+         <div className="p-6 flex flex-col">
             <Heading border="border-hosers-blue">
                <h2 className="text-3xl font-bold">Other Services</h2>
             </Heading>
@@ -110,6 +118,16 @@ export const query = graphql`
                   }
                }
             }
+         }
+      }
+      availableLocations: allSanityLocation(filter: { services: { elemMatch: { service: { id: { eq: $id } } } } }) {
+         nodes {
+            id
+            slug {
+               current
+            }
+            name
+            address
          }
       }
    }
