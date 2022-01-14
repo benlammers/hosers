@@ -1894,6 +1894,7 @@ export type QuerySanityLocationArgs = {
   images: InputMaybe<SanityImageWithAltFilterListInput>;
   internal: InputMaybe<InternalFilterInput>;
   location: InputMaybe<SanityGeopointFilterInput>;
+  metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   services: InputMaybe<SanityServiceFilterListInput>;
@@ -1919,6 +1920,7 @@ export type QuerySanityServiceArgs = {
   images: InputMaybe<SanityImageWithAltFilterListInput>;
   internal: InputMaybe<InternalFilterInput>;
   isHighlighted: InputMaybe<BooleanQueryOperatorInput>;
+  metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   selections: InputMaybe<SanitySelectionFilterListInput>;
@@ -3772,6 +3774,7 @@ export type SanityLocation = Node & SanityDocument & {
   images: Maybe<Array<Maybe<SanityImageWithAlt>>>;
   internal: Internal;
   location: Maybe<SanityGeopoint>;
+  metaDescription: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   parent: Maybe<Node>;
   services: Maybe<Array<Maybe<SanityService>>>;
@@ -3972,6 +3975,7 @@ export enum SanityLocationFieldsEnum {
   location___alt = 'location___alt',
   location___lat = 'location___lat',
   location___lng = 'location___lng',
+  metaDescription = 'metaDescription',
   name = 'name',
   parent___children = 'parent___children',
   parent___children___children = 'parent___children___children',
@@ -4067,6 +4071,7 @@ export enum SanityLocationFieldsEnum {
   services___internal___owner = 'services___internal___owner',
   services___internal___type = 'services___internal___type',
   services___isHighlighted = 'services___isHighlighted',
+  services___metaDescription = 'services___metaDescription',
   services___name = 'services___name',
   services___parent___children = 'services___parent___children',
   services___parent___children___children = 'services___parent___children___children',
@@ -4085,7 +4090,7 @@ export enum SanityLocationFieldsEnum {
   services___selections = 'services___selections',
   services___selections____key = 'services___selections____key',
   services___selections____type = 'services___selections____type',
-  services___selections___desciption = 'services___selections___desciption',
+  services___selections___description = 'services___selections___description',
   services___selections___name = 'services___selections___name',
   services___selections___price = 'services___selections___price',
   services___selections___unit = 'services___selections___unit',
@@ -4114,6 +4119,7 @@ export type SanityLocationFilterInput = {
   images: InputMaybe<SanityImageWithAltFilterListInput>;
   internal: InputMaybe<InternalFilterInput>;
   location: InputMaybe<SanityGeopointFilterInput>;
+  metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   services: InputMaybe<SanityServiceFilterListInput>;
@@ -4195,7 +4201,7 @@ export type SanitySelection = {
   __typename?: 'SanitySelection';
   _key: Maybe<Scalars['String']>;
   _type: Maybe<Scalars['String']>;
-  desciption: Maybe<Scalars['String']>;
+  description: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   price: Maybe<Scalars['Float']>;
   unit: Maybe<Scalars['String']>;
@@ -4204,7 +4210,7 @@ export type SanitySelection = {
 export type SanitySelectionFilterInput = {
   _key: InputMaybe<StringQueryOperatorInput>;
   _type: InputMaybe<StringQueryOperatorInput>;
-  desciption: InputMaybe<StringQueryOperatorInput>;
+  description: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   price: InputMaybe<FloatQueryOperatorInput>;
   unit: InputMaybe<StringQueryOperatorInput>;
@@ -4233,6 +4239,7 @@ export type SanityService = Node & SanityDocument & {
   images: Maybe<Array<Maybe<SanityImageWithAlt>>>;
   internal: Internal;
   isHighlighted: Maybe<Scalars['Boolean']>;
+  metaDescription: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   parent: Maybe<Node>;
   selections: Maybe<Array<Maybe<SanitySelection>>>;
@@ -4474,6 +4481,7 @@ export enum SanityServiceFieldsEnum {
   internal___owner = 'internal___owner',
   internal___type = 'internal___type',
   isHighlighted = 'isHighlighted',
+  metaDescription = 'metaDescription',
   name = 'name',
   parent___children = 'parent___children',
   parent___children___children = 'parent___children___children',
@@ -4516,7 +4524,7 @@ export enum SanityServiceFieldsEnum {
   selections = 'selections',
   selections____key = 'selections____key',
   selections____type = 'selections____type',
-  selections___desciption = 'selections___desciption',
+  selections___description = 'selections___description',
   selections___name = 'selections___name',
   selections___price = 'selections___price',
   selections___unit = 'selections___unit',
@@ -4543,6 +4551,7 @@ export type SanityServiceFilterInput = {
   images: InputMaybe<SanityImageWithAltFilterListInput>;
   internal: InputMaybe<InternalFilterInput>;
   isHighlighted: InputMaybe<BooleanQueryOperatorInput>;
+  metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   selections: InputMaybe<SanitySelectionFilterListInput>;
@@ -6156,3 +6165,15 @@ export type TimelineQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TimelineQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', timeline: { __typename?: 'SanitySection', name: string, title: string } }, allSanityTimelineItem: { __typename?: 'SanityTimelineItemConnection', nodes: Array<{ __typename?: 'SanityTimelineItem', id: string, date: any, description: string, title: string, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
+
+export type ServicesPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ServicesPageQuery = { __typename?: 'Query', allSanityService: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };
+
+export type ServicePageQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type ServicePageQuery = { __typename?: 'Query', service: { __typename?: 'SanityService', id: string, name: string, description: string, metaDescription: string, selections: Array<{ __typename?: 'SanitySelection', description: string, name: string, price: number, unit: string }>, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }> }, otherServices: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> } };

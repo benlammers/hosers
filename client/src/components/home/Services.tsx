@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { ServicesQuery } from '../../generated/types';
-import { ChevronRightIcon } from '../icons/ChevronRightIcon';
+import { ServiceItem } from '../services/ServiceItem';
 
 export const Services: React.FC = () => {
    const { sanityHome, serviceIcons, highlightedServices } = useStaticQuery<ServicesQuery>(query);
@@ -23,19 +23,9 @@ export const Services: React.FC = () => {
          <Link className="btn-blue" to="/services">
             View All Services
          </Link>
-         <div className="flex flex-col gap-4">
-            {highlightedServices.nodes.map(({ id, name, description, slug, icon }) => (
-               <article key={id} className="flex flex-col gap-2 font-body border-t pt-6">
-                  <div className="w-10 h-10">
-                     <GatsbyImage image={icon.image.asset.gatsbyImageData} alt={icon.alt} />
-                  </div>
-                  <h3 className="text-hosers-gray font-bold text-2xl">{name}</h3>
-                  <p className="text-hosers-gray text-lg">{description}</p>
-                  <Link className="btn-text-blue" to={`/service/${slug.current}`}>
-                     <span>Learn More</span>
-                     <ChevronRightIcon className="w-5 h-5" />
-                  </Link>
-               </article>
+         <div className="flex flex-col gap-4 border-t">
+            {highlightedServices.nodes.map((service) => (
+               <ServiceItem key={service.id} {...service} />
             ))}
          </div>
       </section>
