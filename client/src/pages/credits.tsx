@@ -8,7 +8,8 @@ const Credits: React.FC = () => {
          {[
             ['Car wash icon created by', 'Amonrat Rungreangfangsai', 'https://www.flaticon.com/free-icons/car-wash', 'Car wash icons'],
             ['Gallon icon created by', 'Ultimatearm', 'https://www.flaticon.com/free-icons/gallon', 'Gallon icon'],
-            ['Other service icons created by', 'Freepik', 'https://www.flaticon.com/authors/freepik', 'Other service icons']
+            ['Trademark icon created by', 'Those Icons', 'https://www.flaticon.com/free-icons/trademark', 'Trademark icon'],
+            ['Other icons created by', 'Freepik', 'https://www.flaticon.com/authors/freepik', 'Other icons']
          ].map(([description, author, source, title]) => (
             <span>
                {description}{' '}

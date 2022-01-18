@@ -22,7 +22,7 @@ interface Props {
    amount?: number;
 }
 
-export const ServiceItem: React.FC<Props> = ({ name, description, icon, slug }) => {
+export const ServiceItem: React.FC<Props> = ({ name, description, icon, slug, amount }) => {
    return (
       <article className="flex flex-col gap-2 font-body border-t first:border-0 pt-6">
          <div className="w-10 h-10">
@@ -30,7 +30,7 @@ export const ServiceItem: React.FC<Props> = ({ name, description, icon, slug }) 
          </div>
          <div className="flex justify-between items-center">
             <h3 className="text-hosers-gray font-bold text-2xl">{name}</h3>
-            <span>x3</span>
+            {amount && <span className="h-8 w-8 font-bold text-lg rounded-sm bg-gray-200 flex justify-center items-center">x{amount}</span>}
          </div>
          <p className="text-hosers-gray text-lg">{description}</p>
          <Link className="btn-text-blue" to={`/service/${slug.current}`}>
