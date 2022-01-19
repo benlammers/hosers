@@ -13,7 +13,7 @@ export const Payment: React.FC = () => {
             <span className="text-hosers-gray font-bold text-2xl">{sanityHome.payment.title}</span>
          </div>
          <p className="text-hosers-gray text-lg">{sanityHome.payment.description}</p>
-         <a className="btn-blue" href={sanityInfo.erecieptLink} target="_blank">
+         <a className="btn-blue" href={sanityInfo.erecieptLink}>
             <span>Get E-Receipts</span>
             <ExternalIcon className="w-5 h-5" />
          </a>

@@ -10,9 +10,15 @@ interface Props {
       __typename?: 'SanitySlug';
       current: string;
    };
+   geopoint: {
+      lat: number;
+      lng: number;
+   };
 }
 
-export const LocationItem: React.FC<Props> = ({ name, address, slug }) => {
+export const LocationItem: React.FC<Props> = ({ name, address, slug, geopoint }) => {
+   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${geopoint.lat},${geopoint.lng}`;
+
    return (
       <article className="flex flex-col gap-2 font-body border-t first:border-0 pt-6">
          <h3 className="text-hosers-gray font-bold text-2xl">{name}</h3>
@@ -22,8 +28,7 @@ export const LocationItem: React.FC<Props> = ({ name, address, slug }) => {
                <span>View Location</span>
                <ChevronRightIcon className="w-5 h-5" />
             </Link>
-
-            <a className="btn-red">
+            <a className="btn-red" href={directionUrl}>
                <span>Get Directions</span>
                <DirectionIcon className="w-5 h-5" />
             </a>

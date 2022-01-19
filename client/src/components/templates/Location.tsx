@@ -11,9 +11,11 @@ import { DirectionIcon } from '../icons/DirectionIcon';
 import { ImageCarousel } from '../util/ImageCarousel';
 import { ServiceItem } from '../services/ServiceItem';
 import { LocationItem } from '../locations/LocationItem';
+import { Map } from '../util/Map';
 
 const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
    const { location, otherLocations } = data;
+   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.geopoint.lat},${location.geopoint.lng}`;
 
    return (
       <Page className="flex flex-col gap-3">
@@ -36,12 +38,11 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                   Open 24 hours
                </div>
             </div>
-            <a className="btn-red">
+            <a className="btn-red" href={directionUrl}>
                <span>Get Directions</span>
                <DirectionIcon className="w-5 h-5" />
             </a>
          </div>
-
          <ImageCarousel images={location.images} />
          <div className="p-6 flex flex-col">
             <Heading border="border-hosers-blue">
@@ -53,7 +54,7 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                ))}
             </div>
          </div>
-         <div className="h-48 w-full bg-green-300" />
+         <Map locations={[location]} />
          <div className="p-6">
             <Heading border="border-hosers-red">
                <h2 className="text-3xl font-bold">Other Locations</h2>
@@ -89,6 +90,10 @@ export const query = graphql`
                }
             }
          }
+         geopoint: location {
+            lat
+            lng
+         }
          services {
             amount
             service {
@@ -117,6 +122,10 @@ export const query = graphql`
             }
             name
             address
+            geopoint: location {
+               lat
+               lng
+            }
          }
       }
    }

@@ -43,7 +43,7 @@ export const Drawer: React.FC<Props> = ({ isOpen, close }) => {
                   </li>
                ))}
             </ul>
-            <a className="btn-blue" href={data.erecieptLink} target="_blank">
+            <a className="btn-blue" href={data.erecieptLink}>
                <span>Get E-Receipts</span>
                <ExternalIcon className="h-6 w-6" />
             </a>

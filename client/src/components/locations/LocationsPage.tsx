@@ -37,6 +37,10 @@ const query = graphql`
             }
             name
             address
+            geopoint: location {
+               lat
+               lng
+            }
          }
       }
    }

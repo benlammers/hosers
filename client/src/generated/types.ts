@@ -6141,7 +6141,7 @@ export type GiftCardsQuery = { __typename?: 'Query', sanityHome: { __typename?: 
 export type LocationsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LocationsQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', locations: { __typename?: 'SanitySection', title: string, name: string } } };
+export type LocationsQuery = { __typename?: 'Query', sanityHome: { __typename?: 'SanityHome', locations: { __typename?: 'SanitySection', title: string, name: string } }, locations: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, geopoint: { __typename?: 'SanityGeopoint', lat: number, lng: number }, slug: { __typename?: 'SanitySlug', current: string } }> } };
 
 export type PaymentQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6161,7 +6161,7 @@ export type TimelineQuery = { __typename?: 'Query', sanityHome: { __typename?: '
 export type LocationsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LocationsPageQuery = { __typename?: 'Query', allSanityLocation: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string } }> } };
+export type LocationsPageQuery = { __typename?: 'Query', allSanityLocation: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string }, geopoint: { __typename?: 'SanityGeopoint', lat: number, lng: number } }> } };
 
 export type ServicesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6173,7 +6173,7 @@ export type LocationPageQueryVariables = Exact<{
 }>;
 
 
-export type LocationPageQuery = { __typename?: 'Query', location: { __typename?: 'SanityLocation', id: string, name: string, address: string, metaDescription: string, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }>, services: Array<{ __typename?: 'SanityAvailableService', amount: number, service: { __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } } }> }, otherLocations: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string } }> } };
+export type LocationPageQuery = { __typename?: 'Query', location: { __typename?: 'SanityLocation', id: string, name: string, address: string, metaDescription: string, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }>, geopoint: { __typename?: 'SanityGeopoint', lat: number, lng: number }, services: Array<{ __typename?: 'SanityAvailableService', amount: number, service: { __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } } }> }, otherLocations: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string }, geopoint: { __typename?: 'SanityGeopoint', lat: number, lng: number } }> } };
 
 export type ServicePageQueryVariables = Exact<{
   id: Scalars['String'];

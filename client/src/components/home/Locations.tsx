@@ -1,9 +1,10 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { LocationsQuery } from '../../generated/types';
+import { Map } from '../util/Map';
 
 export const Locations: React.FC = () => {
-   const { sanityHome } = useStaticQuery<LocationsQuery>(query);
+   const { sanityHome, locations } = useStaticQuery<LocationsQuery>(query);
 
    return (
       <section id="locations" className="flex flex-col gap-4 m-scroll">
@@ -11,7 +12,7 @@ export const Locations: React.FC = () => {
             <h2 className="text-hosers-red font-bold text-lg">{sanityHome.locations.name}</h2>
             <span className="text-hosers-gray font-bold text-2xl">{sanityHome.locations.title}</span>
          </div>
-         <div className="bg-green-200 h-60 w-full" />
+         <Map locations={locations.nodes} />
       </section>
    );
 };
@@ -22,6 +23,20 @@ const query = graphql`
          locations {
             title
             name
+         }
+      }
+      locations: allSanityLocation {
+         nodes {
+            id
+            name
+            address
+            geopoint: location {
+               lat
+               lng
+            }
+            slug {
+               current
+            }
          }
       }
    }

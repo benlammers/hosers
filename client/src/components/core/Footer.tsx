@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
                <span className="text-xl font-bold">Information</span>
                <ul className="grid grid-cols-3 text-lg gap-y-2 gap-x-8 xl:gap-x-[12vw]">
                   {Object.keys(PathData).map((path) => (
-                     <li>
+                     <li key={path}>
                         <Link to={PathData[path].path}>{PathData[path].name}</Link>
                      </li>
                   ))}
@@ -44,10 +44,10 @@ export const Footer: React.FC = () => {
                </a>
             </div>
             <div className="flex gap-6 lg:justify-self-center">
-               <a href={data.facebookLink} target="_blank">
+               <a href={data.facebookLink}>
                   <FacebookIcon className="h-8 hover:text-gray-200 transition-colors" />
                </a>
-               <a href={data.instagramLink} target="_blank">
+               <a href={data.instagramLink}>
                   <InstagramIcon className="h-8 hover:text-gray-200 transition-colors" />
                </a>
             </div>
@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
             <span>&copy; {new Date().getFullYear()} Hosers Car Wash</span>
             <span className="text-gray-400">
                Site developed by{' '}
-               <a className="cursor-pointer underline underline-offset-4 hover:text-gray-100" href="https://www.benlammers.dev/" target="_blank">
+               <a className="cursor-pointer underline underline-offset-4 hover:text-gray-100" href="https://www.benlammers.dev/">
                   Ben Lammers
                </a>
             </span>
