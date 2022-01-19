@@ -16,6 +16,6 @@
 
 -  turn off watch mode
 
--  restrict google api keys
+-  restrict google api keys !!!
 
 -  netlify preview with hosers sanity
