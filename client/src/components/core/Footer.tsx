@@ -13,14 +13,14 @@ export const Footer: React.FC = () => {
    const { sanityInfo: data } = useStaticQuery<FooterQuery>(query);
 
    return (
-      <footer className="relative">
-         <div className="flex flex-col gap-12 p-12 items-center lg:grid lg:grid-cols-[max-content_1fr_max-content] lg:grid-rows-[max-content_max-content] lg:gap-8 font-body bg-hosers-blue text-white transition-colors">
+      <footer className="relative flex flex-col bg-hosers-blue ">
+         <div className="p-12 max-w-5xl self-center w-full flex flex-col gap-12 items-center lg:grid lg:grid-cols-[max-content_1fr_max-content] lg:grid-rows-[max-content_max-content] lg:gap-8 font-body text-white transition-colors">
             <div className="w-full xs:w-64 lg:w-56">
                <GatsbyImage image={data.logo.image.asset.gatsbyImageData} alt={data.logo.alt} />
             </div>
             <div className="hidden row-span-2 lg:grid gap-2 justify-self-center">
                <span className="text-xl font-bold">Information</span>
-               <ul className="grid grid-cols-3 text-lg gap-y-2 gap-x-8 xl:gap-x-[12vw]">
+               <ul className="grid grid-cols-3 text-lg gap-y-2 gap-x-8">
                   {Object.keys(PathData).map((path) => (
                      <li key={path}>
                         <Link to={PathData[path].path}>{PathData[path].name}</Link>

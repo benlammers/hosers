@@ -29,7 +29,7 @@ export const ServiceItem: React.FC<Props> = ({ name, description, icon, slug, am
             <GatsbyImage image={icon.image.asset.gatsbyImageData} alt={icon.alt} />
          </div>
          <div className="flex justify-between items-center">
-            <h3 className="text-hosers-gray font-bold text-2xl">{name}</h3>
+            <h3 className="text-hosers-gray heading-1">{name}</h3>
             {amount && <span className="h-8 w-8 font-bold text-lg rounded-sm bg-gray-200 flex justify-center items-center">x{amount}</span>}
          </div>
          <p className="text-hosers-gray text-lg">{description}</p>

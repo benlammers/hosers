@@ -35,7 +35,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({ location, isFocused, handleMarker
 
    return (
       // @ts-ignore
-      <div lat={location.geopoint.lat} lng={location.geopoint.lng} className="relative" onClick={() => console.log('YOO')}>
+      <div lat={location.geopoint.lat} lng={location.geopoint.lng} className="relative">
          <button onClick={() => handleMarkerClick(location.id)}>
             <LocationIcon className="h-12 w-12 text-hosers-red -translate-x-1/2 -translate-y-full" />
          </button>
@@ -64,16 +64,25 @@ const MapMarker: React.FC<MapMarkerProps> = ({ location, isFocused, handleMarker
    );
 };
 
+const getCenter = (locations: MapLocation[], focusedId): GoogleMapReact.Coords => {
+   if (focusedId) {
+      return locations.find((location) => location.id === focusedId).geopoint;
+   } else {
+      return {
+         lat: locations.reduce((acc, curr) => acc + curr.geopoint.lat, 0) / locations.length,
+         lng: locations.reduce((acc, curr) => acc + curr.geopoint.lng, 0) / locations.length
+      };
+   }
+};
+
 interface MapProps {
    locations: MapLocation[];
 }
 
 export const Map: React.FC<MapProps> = ({ locations }) => {
-   const avgLat = locations.reduce((acc, curr) => acc + curr.geopoint.lat, 0) / locations.length;
-   const avgLng = locations.reduce((acc, curr) => acc + curr.geopoint.lng, 0) / locations.length;
-
    const [focusedId, setFocusedId] = useState<string>(locations.length === 1 ? locations[0].id : '');
    const [zoom, setZoom] = useState<number>(11);
+   const [center, setCenter] = useState<GoogleMapReact.Coords>(getCenter(locations, focusedId));
 
    const handleMarkerClick = (id: string) => {
       setFocusedId(id);
@@ -85,19 +94,19 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
 
    const handleMapChange = (e: GoogleMapReact.ChangeEventValue) => {
       setZoom(e.zoom);
+      setCenter(e.center);
    };
-
-   let center = focusedId ? locations.find((location) => location.id === focusedId).geopoint : { lat: avgLat, lng: avgLng };
 
    useEffect(() => {
       if (focusedId) setZoom(14);
       else setZoom(11);
+      setCenter(getCenter(locations, focusedId));
    }, [focusedId]);
 
    return (
       <div className="h-96 md:h-[32rem]">
          {isClient && (
-            <GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyCg0elWS1p3sqMdoYCQTZooyp_g5qTEAzg' }} center={center} zoom={zoom} onChange={handleMapChange}>
+            <GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyBiu2Sb6P1Sg7rEnh5xfG-5URxHPAxoitY' }} center={center} zoom={zoom} onChange={handleMapChange}>
                {locations.map((location, index) => (
                   <MapMarker
                      key={index}

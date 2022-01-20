@@ -8,19 +8,22 @@ export const GiftCards: React.FC = () => {
    const { sanityHome, sanityInfo } = useStaticQuery<GiftCardsQuery>(query);
 
    return (
-      <section id="gift-cards" className="bg-gray-200 py-12 px-6 font-body flex flex-col gap-3 m-scroll">
-         <div>
-            <h2 className="text-hosers-red font-bold text-lg">{sanityHome.giftCards.name}</h2>
-            <span className="text-hosers-gray font-bold text-2xl">{sanityHome.giftCards.title}</span>
+      <section id="gift-cards" className="bg-gray-200 py-12 md:py-16 lg:py-24 px-6 font-body m-scroll flex justify-center">
+         <div className="w-full max-w-3xl grid gap-3 grid-rows-[max-content_max-content_max-content] md:gap-x-12 md:pr-8">
+            <div>
+               <h2 className="text-hosers-red heading-2">{sanityHome.giftCards.name}</h2>
+               <span className="text-hosers-gray heading-1">{sanityHome.giftCards.title}</span>
+            </div>
+            <div className="grid gap-1 grid-cols-[1fr_max-content]">
+               <p className="text-hosers-gray text-lg">{sanityHome.giftCards.description}</p>
+               <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-36 sm:hidden" />
+            </div>
+            <a className="btn-red" href={`tel:+1${sanityInfo.phoneNumber}`}>
+               <span>Phone Us</span>
+               <PhoneIcon className="w-5 h-5" />
+            </a>
+            <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-64 hidden sm:block col-start-2 row-span-full" />
          </div>
-         <div className="grid gap-1 grid-cols-[1fr_max-content]">
-            <p className="text-hosers-gray text-lg">{sanityHome.giftCards.description}</p>
-            <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-36" />
-         </div>
-         <a className="btn-red" href={`tel:+1${sanityInfo.phoneNumber}`}>
-            <span>Phone Us</span>
-            <PhoneIcon className="w-5 h-5" />
-         </a>
       </section>
    );
 };

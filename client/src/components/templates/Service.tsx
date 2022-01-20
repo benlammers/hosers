@@ -5,6 +5,7 @@ import { ServicePageQuery } from '../../generated/types';
 import { ChevronLeftIcon } from '../icons/ChevronLeftIcon';
 import { Meta } from '../util/Meta';
 import { Heading } from '../util/Heading';
+import { Map } from '../util/Map';
 import { ServiceItem } from '../services/ServiceItem';
 import { ChevronRightIcon } from '../icons/ChevronRightIcon';
 import { ImageCarousel } from '../util/ImageCarousel';
@@ -55,7 +56,7 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                ))}
             </div>
          </div>
-         <div className="h-48 w-full bg-green-300" />
+         <Map locations={[...availableLocations.nodes]} />
          <div className="p-6 flex flex-col">
             <Heading border="border-hosers-blue">
                <h2 className="text-3xl font-bold">Other Services</h2>
