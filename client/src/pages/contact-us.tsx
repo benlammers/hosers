@@ -25,6 +25,7 @@ type FormValues = {
 const Contact: React.FC = () => {
    const form = useRef();
    const [isSending, setIsSending] = useState<boolean>(false);
+   const [isSent, setIsSent] = useState<boolean>(false);
 
    const { sanityInfo: data } = useStaticQuery<ContactUsQuery>(query);
    const {
@@ -41,18 +42,15 @@ const Contact: React.FC = () => {
       )
    });
 
-   const onSubmit = async (values: FormValues) => {
+   const onSubmit = async () => {
       setIsSending(true);
       try {
-         const result = await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_USER_ID);
-         console.log({ result });
+         await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_USER_ID);
          setIsSending(false);
+         setIsSent(true);
       } catch (error) {
-         console.log({ error });
          setIsSending(false);
       }
-
-      console.log({ values });
    };
 
    return (
@@ -87,10 +85,13 @@ const Contact: React.FC = () => {
                   </label>
                   <input
                      {...register('email')}
-                     className={`rounded-sm p-2 sm:mr-12 text-lg ${errors.email ? 'border-red-500 border-2' : 'border-gray-200 border-[1px]'}`}
+                     className={`rounded-sm p-2 sm:mr-12 text-lg ${errors.email ? 'border-red-500 border-2' : 'border-gray-200 border-[1px]'} ${
+                        isSent ? 'bg-gray-200' : ''
+                     }`}
                      type="email"
                      id="email"
                      placeholder="Enter your email address"
+                     disabled={isSent}
                   />
                   {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                   <label className="font-bold mt-3 text-lg" htmlFor="message">
@@ -98,17 +99,23 @@ const Contact: React.FC = () => {
                   </label>
                   <textarea
                      {...register('message')}
-                     className={` rounded-sm p-2 sm:mr-12 text-lg ${errors.message ? 'border-red-500 border-2' : 'border-gray-200 border-[1px]'}`}
+                     className={` rounded-sm p-2 sm:mr-12 text-lg ${errors.message ? 'border-red-500 border-2' : 'border-gray-200 border-[1px]'} ${
+                        isSent ? 'bg-gray-200' : ''
+                     }`}
                      id="message"
                      placeholder="Enter your message"
                      rows={4}
+                     disabled={isSent}
                   />
                   {errors.message && <span className="text-red-500">{errors.message.message}</span>}
-                  <button type="submit" className="btn-red mt-6">
-                     Send Message
-                     {isSending && <SpinnerIcon className="h-5 w-5 animate-spin" />}
-                  </button>
+                  {!isSent && (
+                     <button type="submit" className="btn-red mt-6">
+                        Send Message
+                        {isSending && <SpinnerIcon className="h-5 w-5 animate-spin" />}
+                     </button>
+                  )}
                </form>
+               {isSent && <span className="mt-2 text-center text-lg text-hosers-gray font-bold">Your message has been sent!</span>}
             </div>
          </Wrapper>
       </Page>

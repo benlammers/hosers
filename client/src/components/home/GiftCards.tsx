@@ -15,11 +15,11 @@ export const GiftCards: React.FC = () => {
                <h2 className="text-hosers-red heading-2">{sanityHome.giftCards.name}</h2>
                <span className="text-hosers-gray heading-1">{sanityHome.giftCards.title}</span>
             </div>
-            <div className="grid gap-1 grid-cols-[1fr_max-content]">
+            <div className="grid gap-3 grid-cols-[1fr_max-content]">
                <p className="text-hosers-gray text-lg">{sanityHome.giftCards.description}</p>
-               <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-36 sm:hidden" />
+               <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-28 h-20 xs:w-36 sm:hidden" />
             </div>
-            <a className="btn-red md:mt-4" href={`tel:+1${sanityInfo.phoneNumber}`}>
+            <a className="btn-red mt-2 md:mt-4" href={`tel:+1${sanityInfo.phoneNumber}`}>
                <span>Phone Us</span>
                <PhoneIcon className="w-5 h-5" />
             </a>

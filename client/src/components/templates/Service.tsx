@@ -27,7 +27,7 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                <h1 className="text-3xl font-bold">{service.name}</h1>
             </Heading>
             <p className="text-lg">{service.description}</p>
-            <div>
+            <div className="mt-4">
                <Heading border="border-hosers-blue">
                   <h2 className="text-2xl font-bold">Selections</h2>
                </Heading>

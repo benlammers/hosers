@@ -31,7 +31,7 @@ interface Props {
 // TODO: FIGURE OUT HOW TO NOT HAVE THIS CAUSE OVERFLOW
 export const ImageCarousel: React.FC<Props> = ({ images }) => {
    return (
-      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-48 lg:h-96 w-full">
+      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-56 lg:h-96 w-screen">
          {images.map((image, index) => (
             <SwiperSlide key={index}>
                <div className="h-full w-full pointer-events-none">
