@@ -3,13 +3,14 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { ServicesQuery } from '../../generated/types';
 import { ServiceItem } from '../services/ServiceItem';
+import { Wrapper } from '../util/Wrapper';
 
 export const Services: React.FC = () => {
    const { sanityHome, serviceIcons, highlightedServices } = useStaticQuery<ServicesQuery>(query);
 
    return (
-      <section id="services" className="py-12 md:py-16 lg:py-24 px-6 font-body flex justify-center m-scroll">
-         <div className="w-full max-w-3xl flex flex-col gap-6 md:pr-12">
+      <section id="services" className="py-6 md:py-16 lg:py-24 m-scroll">
+         <Wrapper className="flex flex-col gap-6 md:pr-12">
             <div>
                <h2 className="text-hosers-blue heading-2">{sanityHome.services.name}</h2>
                <span className="text-hosers-gray heading-1">{sanityHome.services.title}</span>
@@ -29,7 +30,7 @@ export const Services: React.FC = () => {
                   <ServiceItem key={service.id} {...service} />
                ))}
             </div>
-         </div>
+         </Wrapper>
       </section>
    );
 };

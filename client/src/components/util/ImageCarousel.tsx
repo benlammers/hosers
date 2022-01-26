@@ -1,13 +1,11 @@
 import React from 'react';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
+import { HotspotImage } from './HotspotImage';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-import { HotspotImage } from './HotspotImage';
 
 SwiperCore.use([Pagination, Navigation]);
 
@@ -33,7 +31,7 @@ interface Props {
 // TODO: FIGURE OUT HOW TO NOT HAVE THIS CAUSE OVERFLOW
 export const ImageCarousel: React.FC<Props> = ({ images }) => {
    return (
-      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-48 lg:h-96 w-screen">
+      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-48 lg:h-96 w-full">
          {images.map((image, index) => (
             <SwiperSlide key={index}>
                <div className="h-full w-full pointer-events-none">

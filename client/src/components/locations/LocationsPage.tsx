@@ -5,13 +5,14 @@ import { Page } from '../core/Page';
 import { Meta } from '../util/Meta';
 import { Heading } from '../util/Heading';
 import { LocationItem } from './LocationItem';
+import { Wrapper } from '../util/Wrapper';
 
 export const LocationsPage: React.FC = () => {
    const { allSanityLocation } = useStaticQuery<LocationsPageQuery>(query);
 
    return (
-      <Page className="p-6 pt-12 pb-16 md:pt-16 md:pb-24 lg:pb-32 flex justify-center">
-         <div className="w-full max-w-3xl">
+      <Page>
+         <Wrapper className="p-6 pt-12 pb-16 md:pt-16 md:pb-24 lg:pb-32 flex flex-col">
             <Meta
                title="Locations | Hosers Car Wash"
                metaDescription="View all locations for Hosers Car Wash, a locally owned car wash chain in Belleville area"
@@ -24,7 +25,7 @@ export const LocationsPage: React.FC = () => {
                   <LocationItem key={location.id} {...location} />
                ))}
             </div>
-         </div>
+         </Wrapper>
       </Page>
    );
 };

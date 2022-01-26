@@ -10,16 +10,15 @@ import { ServiceItem } from '../services/ServiceItem';
 import { ChevronRightIcon } from '../icons/ChevronRightIcon';
 import { ImageCarousel } from '../util/ImageCarousel';
 import { LocationItem } from '../locations/LocationItem';
+import { Wrapper } from '../util/Wrapper';
 
 const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
    const { service, otherServices, availableLocations } = data;
 
-   console.log({ availableLocations });
-
    return (
       <Page className="flex flex-col gap-3">
          <Meta title={`${service.name} | Hosers Car Wash`} metaDescription={service.metaDescription} />
-         <div className="p-6 flex flex-col gap-3">
+         <Wrapper className="flex flex-col gap-3">
             <Link className="btn-text-blue" to="/services">
                <ChevronLeftIcon className="w-5 h-5" />
                <span>View All Services</span>
@@ -44,9 +43,9 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                   ))}
                </ul>
             </div>
-         </div>
+         </Wrapper>
          <ImageCarousel images={service.images} />
-         <div className="p-6">
+         <Wrapper className="flex flex-col gap-3">
             <Heading border="border-hosers-red">
                <h2 className="text-3xl font-bold">Available Locations</h2>
             </Heading>
@@ -55,9 +54,9 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                   <LocationItem key={location.id} {...location} />
                ))}
             </div>
-         </div>
+         </Wrapper>
          <Map locations={[...availableLocations.nodes]} />
-         <div className="p-6 flex flex-col">
+         <Wrapper className="flex flex-col gap-3">
             <Heading border="border-hosers-blue">
                <h2 className="text-3xl font-bold">Other Services</h2>
             </Heading>
@@ -70,7 +69,7 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                <span>View All Services</span>
                <ChevronRightIcon className="w-5 h-5" />
             </Link>
-         </div>
+         </Wrapper>
       </Page>
    );
 };

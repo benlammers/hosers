@@ -3,13 +3,14 @@ import dayjs from 'dayjs';
 import { graphql, useStaticQuery } from 'gatsby';
 import { TimelineQuery } from '../../generated/types';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { Wrapper } from '../util/Wrapper';
 
 export const Timeline: React.FC = () => {
    const { sanityHome, allSanityTimelineItem } = useStaticQuery<TimelineQuery>(query);
 
    return (
-      <section id="timeline" className="bg-gray-200 py-12 md:py-16 lg:py-24 px-6 font-body flex justify-center m-scroll">
-         <div className="w-full max-w-3xl flex flex-col gap-3 md:gap-6 md:pr-12">
+      <section id="timeline" className="bg-gray-200 py-6 md:py-16 lg:py-24 m-scroll">
+         <Wrapper className="flex flex-col gap-3 md:gap-6 md:pr-12">
             <div>
                <h2 className="text-hosers-red heading-2">{sanityHome.timeline.name}</h2>
                <span className="text-hosers-gray heading-1">{sanityHome.timeline.title}</span>
@@ -31,7 +32,7 @@ export const Timeline: React.FC = () => {
                   </div>
                ))}
             </div>
-         </div>
+         </Wrapper>
       </section>
    );
 };

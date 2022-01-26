@@ -1,9 +1,5 @@
--  contact us page
--  email js
-
--  desktop designs
-
-   -  make max widths and good to go?
+-  contact us page, fix submission
+-  email js - swap accounts?
 
 -  clean up
 

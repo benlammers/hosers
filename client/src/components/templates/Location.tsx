@@ -12,6 +12,7 @@ import { ImageCarousel } from '../util/ImageCarousel';
 import { ServiceItem } from '../services/ServiceItem';
 import { LocationItem } from '../locations/LocationItem';
 import { Map } from '../util/Map';
+import { Wrapper } from '../util/Wrapper';
 
 const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
    const { location, otherLocations } = data;
@@ -20,7 +21,7 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
    return (
       <Page className="flex flex-col gap-3">
          <Meta title={`${location.name} | Hosers Car Wash`} metaDescription={location.metaDescription} />
-         <div className="p-6 flex flex-col gap-6">
+         <Wrapper className="flex flex-col gap-6">
             <Link className="btn-text-red" to="/locations">
                <ChevronLeftIcon className="w-5 h-5" />
                <span>View All Locations</span>
@@ -42,9 +43,9 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                <span>Get Directions</span>
                <DirectionIcon className="w-5 h-5" />
             </a>
-         </div>
+         </Wrapper>
          <ImageCarousel images={location.images} />
-         <div className="p-6 flex flex-col">
+         <Wrapper className="pb-16">
             <Heading border="border-hosers-blue">
                <h2 className="text-3xl font-bold">Services at Location</h2>
             </Heading>
@@ -53,9 +54,9 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                   <ServiceItem key={service.service.id} {...service.service} amount={service.amount} />
                ))}
             </div>
-         </div>
+         </Wrapper>
          <Map locations={[location]} />
-         <div className="p-6">
+         <Wrapper className="pb-16">
             <Heading border="border-hosers-red">
                <h2 className="text-3xl font-bold">Other Locations</h2>
             </Heading>
@@ -64,7 +65,7 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                   <LocationItem key={location.id} {...location} />
                ))}
             </div>
-         </div>
+         </Wrapper>
       </Page>
    );
 };
