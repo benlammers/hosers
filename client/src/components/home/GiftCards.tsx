@@ -17,13 +17,13 @@ export const GiftCards: React.FC = () => {
             </div>
             <div className="grid gap-3 grid-cols-[1fr_max-content]">
                <p className="text-hosers-gray text-lg">{sanityHome.giftCards.description}</p>
-               <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-28 h-20 xs:w-36 sm:hidden" />
+               <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="mt-2 w-28 h-20 xs:w-36 sm:hidden" />
             </div>
             <a className="btn-red mt-2 md:mt-4" href={`tel:+1${sanityInfo.phoneNumber}`}>
                <span>Phone Us</span>
                <PhoneIcon className="w-5 h-5" />
             </a>
-            <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-64 hidden sm:block col-start-2 row-span-full" />
+            {/* <StaticImage src="../../images/giftcards.png" alt="Two Hosers gift cards" className="w-64 hidden sm:block col-start-2 row-span-full" /> */}
          </Wrapper>
       </section>
    );
