@@ -47,7 +47,7 @@ export const Header: React.FC = () => {
    const closeDrawer = () => setIsDrawerOpen(false);
 
    return (
-      <header className="bg-hosers-blue w-full px-3 fixed top-0 z-40 shadow-lg">
+      <header className="bg-hosers-blue w-full px-3 shadow-lg">
          <div className="max-w-5xl h-header mx-auto flex justify-between items-center">
             <Link className="w-36" to="/">
                <GatsbyImage image={data.logo.image.asset.gatsbyImageData} alt={data.logo.alt} />

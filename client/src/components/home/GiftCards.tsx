@@ -9,7 +9,7 @@ export const GiftCards: React.FC = () => {
    const { sanityHome, sanityInfo } = useStaticQuery<GiftCardsQuery>(query);
 
    return (
-      <section id="gift-cards" className="bg-gray-200 py-6 md:py-16 lg:py-24 m-scroll">
+      <section id="gift-cards" className="bg-gray-200 py-6 md:py-16 lg:py-24">
          <Wrapper className="grid gap-3 xs:gap-x-6 grid-rows-[max-content_max-content_max-content] grid-cols-[1fr_max-content] md:gap-x-12 md:pr-8">
             <div className="col-span-2 sm:col-span-1 row-start-1 col-start-1">
                <h2 className="text-hosers-red heading-2">{sanityHome.giftCards.name}</h2>

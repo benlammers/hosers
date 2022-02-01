@@ -9,7 +9,7 @@ export const Timeline: React.FC = () => {
    const { sanityHome, allSanityTimelineItem } = useStaticQuery<TimelineQuery>(query);
 
    return (
-      <section id="timeline" className="bg-gray-200 py-6 md:py-16 lg:py-24 m-scroll">
+      <section id="timeline" className="bg-gray-200 py-6 md:py-16 lg:py-24">
          <Wrapper className="flex flex-col gap-3 md:gap-6 md:pr-12">
             <div>
                <h2 className="text-hosers-red heading-2">{sanityHome.timeline.name}</h2>

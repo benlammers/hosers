@@ -10,7 +10,6 @@ import { LocationIcon } from '../components/icons/LocationIcon';
 import { MailIcon } from '../components/icons/MailIcon';
 import { PhoneIcon } from '../components/icons/PhoneIcon';
 import { Heading } from '../components/util/Heading';
-import { SpinnerIcon } from '../components/icons/SpinnerIcon';
 import { Wrapper } from '../components/util/Wrapper';
 
 const EMAILJS_SERVICE_ID = 'service_1jwm5rv';
@@ -109,9 +108,8 @@ const Contact: React.FC = () => {
                   />
                   {errors.message && <span className="text-red-500">{errors.message.message}</span>}
                   {!isSent && (
-                     <button type="submit" className="btn-red mt-6">
-                        Send Message
-                        {isSending && <SpinnerIcon className="h-5 w-5 animate-spin" />}
+                     <button type="submit" className="btn-red mt-6" disabled={isSending}>
+                        {isSending ? 'Sending Message' : 'Send Message'}
                      </button>
                   )}
                </form>

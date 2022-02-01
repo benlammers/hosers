@@ -9,7 +9,7 @@ export const Services: React.FC = () => {
    const { sanityHome, serviceIcons, highlightedServices } = useStaticQuery<ServicesQuery>(query);
 
    return (
-      <section id="services" className="py-6 md:py-16 lg:py-24 m-scroll">
+      <section id="services" className="py-6 md:py-16 lg:py-24">
          <Wrapper className="flex flex-col gap-6 md:pr-12">
             <div>
                <h2 className="text-hosers-blue heading-2">{sanityHome.services.name}</h2>
