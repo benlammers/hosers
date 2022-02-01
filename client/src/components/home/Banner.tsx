@@ -9,7 +9,7 @@ export const Banner: React.FC = () => {
    const { sanityHome, sanityInfo } = useStaticQuery<BannerQuery>(query);
 
    return (
-      <div className="h-banner max-h-[64rem] relative flex flex-col md:flex-row justify-end items-center md:justify-center md:items-end pb-12 gap-4 md:gap-8">
+      <div className="h-banner max-h-[64rem] relative flex flex-col md:flex-row justify-end items-center md:justify-center md:items-end pb-16 md:pb-12 gap-4 md:gap-8">
          <div className="absolute opacity-75 inset-0 h-full w-full -z-20">
             <HotspotImage image={sanityHome.bannerImage.image} alt={sanityHome.bannerImage.alt} />
             <h1 className="visually-hidden">Hosers Car Wash</h1>

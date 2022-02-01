@@ -83,3 +83,9 @@ body,
 .swiper-button-next {
    transform: translateX(-16px);
 }
+
+@media (max-width: 480px) {
+   .swiper-button-next {
+      transform: translateX(-8px);
+   }
+}
