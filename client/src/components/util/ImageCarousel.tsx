@@ -1,6 +1,6 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useLayoutEffect, useState } from 'react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { HotspotImage } from './HotspotImage';
 
 import 'swiper/css';
@@ -28,10 +28,22 @@ interface Props {
    }[];
 }
 
-// TODO: FIGURE OUT HOW TO NOT HAVE THIS CAUSE OVERFLOW
 export const ImageCarousel: React.FC<Props> = ({ images }) => {
+   const [width, setWidth] = useState<number>();
+
+   console.log({ width });
+
+   useLayoutEffect(() => {
+      function updateSize() {
+         setWidth(window.innerWidth - (window.innerWidth - document.documentElement.clientWidth));
+      }
+      window.addEventListener('resize', updateSize);
+      updateSize();
+      return () => window.removeEventListener('resize', updateSize);
+   }, []);
+
    return (
-      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-56 lg:h-96 w-screen mr-[64px]">
+      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-56 lg:h-96 max-w-sm xs:max-w-[unset]" style={{ width }}>
          {images.map((image, index) => (
             <SwiperSlide key={index}>
                <div className="h-full w-full pointer-events-none">

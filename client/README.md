@@ -1,3 +1,7 @@
+-  relook at overflow of slider
+
+   -  programmatically get width?
+
 -  accessibility check
 
 -  turn off watch mode

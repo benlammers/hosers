@@ -14,29 +14,29 @@ export const Nayax: React.FC<Props> = ({ className }) => {
             fill="#F4EC20"
          />
          <rect x="25" y="15.7356" width="10.1818" height="3.23967" rx="1.5" fill="#DADADA" />
-         <rect x="25.125" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" stroke-opacity="0.25" stroke-width="0.25" />
+         <rect x="25.125" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" strokeOpacity="0.25" strokeWidth="0.25" />
          <rect x="50" y="5" width="8.33057" height="8.33057" rx="4.16529" fill="url(#paint0_radial_486_2)" />
-         <rect x="50.125" y="5.125" width="8.08057" height="8.08057" rx="4.04029" stroke="black" stroke-opacity="0.1" stroke-width="0.25" />
+         <rect x="50.125" y="5.125" width="8.08057" height="8.08057" rx="4.04029" stroke="black" strokeOpacity="0.1" strokeWidth="0.25" />
          <rect x="40.7354" y="15.7356" width="10.1818" height="3.23967" rx="1.5" fill="#DADADA" />
-         <rect x="40.8604" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" stroke-opacity="0.25" stroke-width="0.25" />
+         <rect x="40.8604" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" strokeOpacity="0.25" strokeWidth="0.25" />
          <rect x="56.4709" y="15.7356" width="10.1818" height="3.23967" rx="1.5" fill="#DADADA" />
-         <rect x="56.5959" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" stroke-opacity="0.25" stroke-width="0.25" />
+         <rect x="56.5959" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" strokeOpacity="0.25" strokeWidth="0.25" />
          <rect x="72.2065" y="15.7356" width="10.1818" height="3.23967" rx="1.5" fill="#DADADA" />
-         <rect x="72.3315" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" stroke-opacity="0.25" stroke-width="0.25" />
-         <g clip-path="url(#clip0_486_2)">
+         <rect x="72.3315" y="15.8606" width="9.93181" height="2.98967" rx="1.375" stroke="#474747" strokeOpacity="0.25" strokeWidth="0.25" />
+         <g clipPath="url(#clip0_486_2)">
             <path
                d="M102.989 51.9822L99.6156 55.5695C99.3099 55.8706 98.819 56.5036 99.3406 57.1799C99.8903 57.8929 100.625 57.4374 100.781 57.3059L102.712 55.1519"
                stroke="black"
-               stroke-linecap="round"
-               stroke-linejoin="round"
+               strokeLinecap="round"
+               strokeLinejoin="round"
             />
-            <path d="M105.057 51.5824L104.477 58.21L101.318 61.1276" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M97.7271 52.3929L96.8389 62.4778" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M105.057 51.5824L104.477 58.21L101.318 61.1276" stroke="black" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M97.7271 52.3929L96.8389 62.4778" stroke="black" strokeLinecap="round" strokeLinejoin="round" />
             <path
                d="M102.049 52.7711L95.7099 52.2164L94.8275 62.3019L101.167 62.8565L101.722 56.5171"
                stroke="black"
-               stroke-linecap="round"
-               stroke-linejoin="round"
+               strokeLinecap="round"
+               strokeLinejoin="round"
             />
          </g>
          <path
@@ -81,8 +81,8 @@ export const Nayax: React.FC<Props> = ({ className }) => {
                gradientUnits="userSpaceOnUse"
                gradientTransform="translate(54.1653 9.16529) rotate(90) scale(4.16529)"
             >
-               <stop stop-color="#959595" />
-               <stop offset="1" stop-color="#929292" />
+               <stop stopColor="#959595" />
+               <stop offset="1" stopColor="#929292" />
             </radialGradient>
             <clipPath id="clip0_486_2">
                <rect width="13.8843" height="13.8843" fill="white" transform="translate(106.884 50) rotate(90)" />
