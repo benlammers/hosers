@@ -106,7 +106,13 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
    return (
       <div className="h-96 md:h-[32rem]">
          {isClient && (
-            <GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyBiu2Sb6P1Sg7rEnh5xfG-5URxHPAxoitY' }} center={center} zoom={zoom} onChange={handleMapChange}>
+            <GoogleMapReact
+               options={{ zoomControlOptions: { position: 1 } }}
+               bootstrapURLKeys={{ key: 'AIzaSyBiu2Sb6P1Sg7rEnh5xfG-5URxHPAxoitY' }}
+               center={center}
+               zoom={zoom}
+               onChange={handleMapChange}
+            >
                {locations.map((location, index) => (
                   <MapMarker
                      key={index}
