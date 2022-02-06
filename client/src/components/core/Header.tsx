@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
                   </li>
                ))}
                <li>
-                  <a className="btn-red rounded-sm py-1 gap-0 font-normal" href={data.erecieptLink}>
+                  <a className="btn-red rounded-sm py-1 gap-0 font-normal" target="_blank" href={data.erecieptLink}>
                      Get E-Reciepts
                   </a>
                </li>

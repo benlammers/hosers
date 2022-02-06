@@ -11,6 +11,7 @@ import { MailIcon } from '../components/icons/MailIcon';
 import { PhoneIcon } from '../components/icons/PhoneIcon';
 import { Heading } from '../components/util/Heading';
 import { Wrapper } from '../components/util/Wrapper';
+import { Meta } from '../components/util/Meta';
 
 const EMAILJS_SERVICE_ID = 'service_1jwm5rv';
 const EMAILJS_TEMPLATE_ID = 'template_0qxq5mz';
@@ -55,6 +56,7 @@ const Contact: React.FC = () => {
    return (
       <Page>
          <Wrapper className="pt-12 pb-16 md:pt-16 md:pb-24 lg:pb-32 items-center flex flex-col gap-9">
+            <Meta title="Contact Us | Hosers Car Wash" metaDescription="Contact us for more information about Hosers Car Wash" />
             <div className="w-full max-w-3xl flex flex-col gap-3">
                <Heading border="border-hosers-red">
                   <h1 className="text-3xl font-bold">Contact Us</h1>

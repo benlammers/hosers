@@ -1,4 +1,5 @@
 module.exports = {
+   pathPrefix: '/preview',
    siteMetadata: {
       siteUrl: 'https://www.hoserscarwash.ca',
       title: 'Hosers Car Wash'

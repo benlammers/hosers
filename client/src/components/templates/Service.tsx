@@ -105,7 +105,7 @@ export const query = graphql`
             }
          }
       }
-      otherServices: allSanityService(limit: 3) {
+      otherServices: allSanityService(limit: 3, filter: { id: { ne: $id } }) {
          nodes {
             id
             slug {

@@ -31,7 +31,7 @@ interface MapMarkerProps {
 }
 
 const MapMarker: React.FC<MapMarkerProps> = ({ location, isFocused, handleMarkerClick, handleMarkerClose }) => {
-   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.address.replace(' ', '+')}`;
+   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.geopoint.lat},${location.geopoint.lng}`;
 
    return (
       // @ts-ignore
@@ -108,7 +108,7 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
          {isClient && (
             <GoogleMapReact
                options={{ zoomControlOptions: { position: 1 } }}
-               bootstrapURLKeys={{ key: 'AIzaSyBiu2Sb6P1Sg7rEnh5xfG-5URxHPAxoitY' }}
+               bootstrapURLKeys={{ key: 'AIzaSyCg0elWS1p3sqMdoYCQTZooyp_g5qTEAzg' }}
                center={center}
                zoom={zoom}
                onChange={handleMapChange}
