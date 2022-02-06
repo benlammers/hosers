@@ -7,6 +7,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+const isClient = typeof window !== 'undefined';
+
 SwiperCore.use([Pagination, Navigation]);
 
 interface Props {
@@ -28,10 +30,8 @@ interface Props {
    }[];
 }
 
-export const ImageCarousel: React.FC<Props> = ({ images }) => {
+export const Carousel: React.FC<Props> = ({ images }) => {
    const [width, setWidth] = useState<number>();
-
-   console.log({ width });
 
    useLayoutEffect(() => {
       function updateSize() {
@@ -53,4 +53,9 @@ export const ImageCarousel: React.FC<Props> = ({ images }) => {
          ))}
       </Swiper>
    );
+};
+
+export const ImageCarousel: React.FC<Props> = ({ images }) => {
+   if (isClient) return <Carousel images={images} />;
+   return null;
 };

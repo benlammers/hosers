@@ -31,7 +31,7 @@ interface MapMarkerProps {
 }
 
 const MapMarker: React.FC<MapMarkerProps> = ({ location, isFocused, handleMarkerClick, handleMarkerClose }) => {
-   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.geopoint.lat},${location.geopoint.lng}`;
+   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.address.replace(' ', '+')}`;
 
    return (
       // @ts-ignore

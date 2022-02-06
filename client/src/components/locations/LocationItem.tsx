@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const LocationItem: React.FC<Props> = ({ name, address, slug, geopoint }) => {
-   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${geopoint.lat},${geopoint.lng}`;
+   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${address.replace(' ', '+')}`;
 
    return (
       <article className="flex flex-col gap-2 font-body border-t first:border-0 pt-6">

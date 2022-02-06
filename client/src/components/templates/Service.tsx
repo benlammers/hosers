@@ -36,7 +36,10 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                      <li key={selection.name} className="text-lg py-2">
                         <div className="flex justify-between font-bold mb-1">
                            <h3>{selection.name}</h3>
-                           <span>${selection.price.toFixed(2)}</span>
+                           <span>
+                              ${selection.price.toFixed(2)}
+                              {selection.unit && `/${selection.unit}`}
+                           </span>
                         </div>
                         <p>{selection.description}</p>
                      </li>

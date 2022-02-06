@@ -16,7 +16,7 @@ import { Wrapper } from '../util/Wrapper';
 
 const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
    const { location, otherLocations } = data;
-   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.geopoint.lat},${location.geopoint.lng}`;
+   const directionUrl = `https://www.google.com/maps/dir/?api=1&travelmode=driving&destination=${location.address.replace(' ', '+')}`;
 
    return (
       <Page className="flex flex-col gap-3">
