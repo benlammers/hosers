@@ -54,8 +54,12 @@ export default {
          name: 'selections',
          title: 'Selections',
          type: 'array',
-         of: [{ type: 'selection' }],
-         validation: (Rule) => Rule.required()
+         of: [{ type: 'selection' }]
+      },
+      {
+         name: 'selectionImage',
+         title: 'Selection Image',
+         type: 'imageWithAlt'
       }
    ]
 };

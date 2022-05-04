@@ -12,8 +12,7 @@ export default {
       {
          name: 'description',
          title: 'Description',
-         type: 'text',
-         validation: (Rule) => Rule.required()
+         type: 'text'
       },
       {
          name: 'price',
