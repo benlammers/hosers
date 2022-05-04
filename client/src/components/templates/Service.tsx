@@ -11,6 +11,7 @@ import { ChevronRightIcon } from '../icons/ChevronRightIcon';
 import { ImageCarousel } from '../util/ImageCarousel';
 import { LocationItem } from '../locations/LocationItem';
 import { Wrapper } from '../util/Wrapper';
+import { HotspotImage } from '../util/HotspotImage';
 
 const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
    const { service, otherServices, availableLocations } = data;
@@ -27,25 +28,32 @@ const Service: React.FC<PageProps<ServicePageQuery>> = ({ data }) => {
                <h1 className="text-3xl font-bold">{service.name}</h1>
             </Heading>
             <p className="text-lg">{service.description}</p>
-            <div className="mt-4">
-               <Heading border="border-hosers-blue">
-                  <h2 className="text-2xl font-bold">Selections</h2>
-               </Heading>
-               <ul className="flex flex-col divide-y">
-                  {service.selections.map((selection) => (
-                     <li key={selection.name} className="text-lg py-2">
-                        <div className="flex justify-between font-bold mb-1">
-                           <h3>{selection.name}</h3>
-                           <span>
-                              ${selection.price.toFixed(2)}
-                              {selection.unit && `/${selection.unit}`}
-                           </span>
-                        </div>
-                        <p>{selection.description}</p>
-                     </li>
-                  ))}
-               </ul>
-            </div>
+            {(service.selections.length > 0 || service.selectionImage?.image) && (
+               <div className="mt-4">
+                  <Heading border="border-hosers-blue">
+                     <h2 className="text-2xl font-bold">Selections</h2>
+                  </Heading>
+                  <ul className="flex flex-col divide-y">
+                     {service.selections.map((selection) => (
+                        <li key={selection.name} className="text-lg py-2">
+                           <div className="flex justify-between font-bold mb-1">
+                              <h3>{selection.name}</h3>
+                              <span>
+                                 ${selection.price.toFixed(2)}
+                                 {selection.unit && `/${selection.unit}`}
+                              </span>
+                           </div>
+                           {selection.description && <p>{selection.description}</p>}
+                        </li>
+                     ))}
+                  </ul>
+                  {service.selectionImage && (
+                     <div className="mt-6 mb-4 h-64 sm:h-96 max-w-sm xs:max-w-3xl">
+                        <HotspotImage image={service.selectionImage.image} alt={service.selectionImage.alt} />
+                     </div>
+                  )}
+               </div>
+            )}
          </Wrapper>
          <ImageCarousel images={service.images} />
          <Wrapper className="flex flex-col gap-3">
@@ -91,6 +99,18 @@ export const query = graphql`
             name
             price
             unit
+         }
+         selectionImage {
+            alt
+            image {
+               asset {
+                  gatsbyImageData(fit: FILL, placeholder: BLURRED)
+               }
+               hotspot {
+                  y
+                  x
+               }
+            }
          }
          images {
             alt

@@ -4,7 +4,6 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { FooterQuery } from '../../generated/types';
 import { LocationIcon } from '../icons/LocationIcon';
 import { PhoneIcon } from '../icons/PhoneIcon';
-import { MailIcon } from '../icons/MailIcon';
 import { FacebookIcon } from '../icons/FacebookIcon';
 import { InstagramIcon } from '../icons/InstagramIcon';
 import { PathData } from './Header';
@@ -37,10 +36,6 @@ export const Footer: React.FC = () => {
                <a className="flex gap-2 hover:text-gray-200" href={`tel:+1${data.phoneNumber}`}>
                   <PhoneIcon className="h-5 mt-1" />
                   Phone: {data.phoneNumber}
-               </a>
-               <a className="flex gap-2 hover:text-gray-200" href={`mailto:${data.email}`}>
-                  <MailIcon className="h-5 mt-1" />
-                  Email: {data.email}
                </a>
             </div>
             <div className="flex gap-6 lg:justify-self-center">

@@ -5,7 +5,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { MenuIcon } from '../icons/MenuIcon';
 import { Drawer } from './Drawer';
 
-export type Path = 'home' | 'locations' | 'services' | 'giftCards' | 'payment' | 'contactUs';
+export type Path = 'locations' | 'services' | 'giftCards' | 'payment' | 'timeline' | 'contactUs';
 
 type PathData = {
    path: string;
@@ -13,10 +13,6 @@ type PathData = {
 };
 
 export const PathData: Record<Path, PathData> = {
-   home: {
-      path: '/',
-      name: 'Home'
-   },
    locations: {
       path: '/locations',
       name: 'Locations'
@@ -32,6 +28,10 @@ export const PathData: Record<Path, PathData> = {
    payment: {
       path: '/#payment',
       name: 'Debit & Credit'
+   },
+   timeline: {
+      path: '/#timeline',
+      name: 'History'
    },
    contactUs: {
       path: '/contact-us',

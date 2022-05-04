@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link, navigate, useStaticQuery } from 'gatsby';
+import { graphql, navigate, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { DrawerQuery } from '../../generated/types';
 import { CrossIcon } from '../icons/CrossIcon';

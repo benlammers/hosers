@@ -43,7 +43,7 @@ export const Carousel: React.FC<Props> = ({ images }) => {
    }, []);
 
    return (
-      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-56 lg:h-96 max-w-sm xs:max-w-[unset]" style={{ width }}>
+      <Swiper pagination={{ type: 'bullets' }} navigation={true} className="h-64 sm:h-96 max-w-sm xs:max-w-3xl" style={{ width }}>
          {images.map((image, index) => (
             <SwiperSlide key={index}>
                <div className="h-full w-full pointer-events-none">
@@ -56,6 +56,11 @@ export const Carousel: React.FC<Props> = ({ images }) => {
 };
 
 export const ImageCarousel: React.FC<Props> = ({ images }) => {
-   if (isClient) return <Carousel images={images} />;
+   if (isClient)
+      return (
+         <div className="w-full mx-auto">
+            <Carousel images={images} />;
+         </div>
+      );
    return null;
 };

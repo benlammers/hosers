@@ -2,20 +2,21 @@ import * as yup from 'yup';
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { graphql, useStaticQuery } from 'gatsby';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ContactUsQuery } from '../generated/types';
 import { Page } from '../components/core/Page';
 import { LocationIcon } from '../components/icons/LocationIcon';
-import { MailIcon } from '../components/icons/MailIcon';
 import { PhoneIcon } from '../components/icons/PhoneIcon';
 import { Heading } from '../components/util/Heading';
 import { Wrapper } from '../components/util/Wrapper';
 import { Meta } from '../components/util/Meta';
 
-const EMAILJS_SERVICE_ID = 'service_1jwm5rv';
-const EMAILJS_TEMPLATE_ID = 'template_0qxq5mz';
-const EMAILJS_USER_ID = 'user_T4XLA2b0KTNI4fPwftutz';
+const EMAILJS_SERVICE_ID = 'service_z9p2vps';
+const EMAILJS_TEMPLATE_ID = 'template_himwwji';
+const EMAILJS_USER_ID = 'DVnvNVWEXTrTYa7Mt';
+const RECAPTCHA_KEY = '6LeHs7IUAAAAANxV7eg3Ni6h6diKH8unGRi0aHci';
 
 type FormValues = {
    email: string;
@@ -26,6 +27,9 @@ const Contact: React.FC = () => {
    const form = useRef();
    const [isSending, setIsSending] = useState<boolean>(false);
    const [isSent, setIsSent] = useState<boolean>(false);
+
+   const [isValidated, setIsValidated] = useState<boolean>(false);
+   const [isValidatedError, setIsValidatedError] = useState<boolean>(false);
 
    const { sanityInfo: data } = useStaticQuery<ContactUsQuery>(query);
    const {
@@ -43,6 +47,11 @@ const Contact: React.FC = () => {
    });
 
    const onSubmit = async () => {
+      console.log({ values: form.current });
+      if (!isValidated) {
+         setIsValidatedError(true);
+         return;
+      }
       setIsSending(true);
       try {
          await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_USER_ID);
@@ -51,6 +60,11 @@ const Contact: React.FC = () => {
       } catch (error) {
          setIsSending(false);
       }
+   };
+
+   const onRecaptchaChange = () => {
+      setIsValidated(true);
+      setIsValidatedError(false);
    };
 
    return (
@@ -69,10 +83,6 @@ const Contact: React.FC = () => {
                   <a className="flex gap-2 hover:text-gray-600 w-max" href={`tel:+1${data.phoneNumber}`}>
                      <PhoneIcon className="h-5 mt-1" />
                      Phone: <strong>{data.phoneNumber}</strong>
-                  </a>
-                  <a className="flex gap-2 hover:text-gray-600 w-max" href={`mailto:${data.email}`}>
-                     <MailIcon className="h-5 mt-1" />
-                     Email: <strong>{data.email}</strong>
                   </a>
                </div>
             </div>
@@ -109,6 +119,10 @@ const Contact: React.FC = () => {
                      disabled={isSent}
                   />
                   {errors.message && <span className="text-red-500">{errors.message.message}</span>}
+                  <div className="mt-3">
+                     <ReCAPTCHA sitekey={RECAPTCHA_KEY} onChange={onRecaptchaChange} />
+                  </div>
+                  {isValidatedError && <span className="text-red-500">Must complete ReCAPTCHA</span>}
                   {!isSent && (
                      <button type="submit" className="btn-red mt-6" disabled={isSending}>
                         {isSending ? 'Sending Message' : 'Send Message'}

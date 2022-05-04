@@ -1533,6 +1533,7 @@ export type Query = {
   allSiteFunction: SiteFunctionConnection;
   allSitePage: SitePageConnection;
   allSitePlugin: SitePluginConnection;
+  allStaticImage: StaticImageConnection;
   directory: Maybe<Directory>;
   file: Maybe<File>;
   imageSharp: Maybe<ImageSharp>;
@@ -1548,6 +1549,7 @@ export type Query = {
   siteFunction: Maybe<SiteFunction>;
   sitePage: Maybe<SitePage>;
   sitePlugin: Maybe<SitePlugin>;
+  staticImage: Maybe<StaticImage>;
 };
 
 
@@ -1668,6 +1670,14 @@ export type QueryAllSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<SitePluginSortInput>;
+};
+
+
+export type QueryAllStaticImageArgs = {
+  filter: InputMaybe<StaticImageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<StaticImageSortInput>;
 };
 
 
@@ -1908,6 +1918,7 @@ export type QuerySanityServiceArgs = {
   _key: InputMaybe<StringQueryOperatorInput>;
   _rawIcon: InputMaybe<JsonQueryOperatorInput>;
   _rawImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawSelectionImage: InputMaybe<JsonQueryOperatorInput>;
   _rawSelections: InputMaybe<JsonQueryOperatorInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rev: InputMaybe<StringQueryOperatorInput>;
@@ -1923,6 +1934,7 @@ export type QuerySanityServiceArgs = {
   metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
+  selectionImage: InputMaybe<SanityImageWithAltFilterInput>;
   selections: InputMaybe<SanitySelectionFilterListInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
 };
@@ -2015,6 +2027,46 @@ export type QuerySitePluginArgs = {
   resolve: InputMaybe<StringQueryOperatorInput>;
   ssrAPIs: InputMaybe<StringQueryOperatorInput>;
   version: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryStaticImageArgs = {
+  absolutePath: InputMaybe<StringQueryOperatorInput>;
+  accessTime: InputMaybe<DateQueryOperatorInput>;
+  atime: InputMaybe<DateQueryOperatorInput>;
+  atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  base: InputMaybe<StringQueryOperatorInput>;
+  birthTime: InputMaybe<DateQueryOperatorInput>;
+  birthtime: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  blksize: InputMaybe<IntQueryOperatorInput>;
+  blocks: InputMaybe<IntQueryOperatorInput>;
+  changeTime: InputMaybe<DateQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  ctime: InputMaybe<DateQueryOperatorInput>;
+  ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  dev: InputMaybe<FloatQueryOperatorInput>;
+  dir: InputMaybe<StringQueryOperatorInput>;
+  ext: InputMaybe<StringQueryOperatorInput>;
+  extension: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  ino: InputMaybe<FloatQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  mode: InputMaybe<IntQueryOperatorInput>;
+  modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  mtime: InputMaybe<DateQueryOperatorInput>;
+  mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  nlink: InputMaybe<IntQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prettySize: InputMaybe<StringQueryOperatorInput>;
+  rdev: InputMaybe<IntQueryOperatorInput>;
+  relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  relativePath: InputMaybe<StringQueryOperatorInput>;
+  root: InputMaybe<StringQueryOperatorInput>;
+  size: InputMaybe<IntQueryOperatorInput>;
+  sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<IntQueryOperatorInput>;
 };
 
 export type SanityAssetSourceData = {
@@ -4051,6 +4103,7 @@ export enum SanityLocationFieldsEnum {
   services___service____key = 'services___service____key',
   services___service____rawIcon = 'services___service____rawIcon',
   services___service____rawImages = 'services___service____rawImages',
+  services___service____rawSelectionImage = 'services___service____rawSelectionImage',
   services___service____rawSelections = 'services___service____rawSelections',
   services___service____rawSlug = 'services___service____rawSlug',
   services___service____rev = 'services___service____rev',
@@ -4083,6 +4136,10 @@ export enum SanityLocationFieldsEnum {
   services___service___name = 'services___service___name',
   services___service___parent___children = 'services___service___parent___children',
   services___service___parent___id = 'services___service___parent___id',
+  services___service___selectionImage____key = 'services___service___selectionImage____key',
+  services___service___selectionImage____rawImage = 'services___service___selectionImage____rawImage',
+  services___service___selectionImage____type = 'services___service___selectionImage____type',
+  services___service___selectionImage___alt = 'services___service___selectionImage___alt',
   services___service___selections = 'services___service___selections',
   services___service___selections____key = 'services___service___selections____key',
   services___service___selections____type = 'services___service___selections____type',
@@ -4223,6 +4280,7 @@ export type SanityService = Node & SanityDocument & {
   _key: Maybe<Scalars['String']>;
   _rawIcon: Maybe<Scalars['JSON']>;
   _rawImages: Maybe<Scalars['JSON']>;
+  _rawSelectionImage: Maybe<Scalars['JSON']>;
   _rawSelections: Maybe<Scalars['JSON']>;
   _rawSlug: Maybe<Scalars['JSON']>;
   _rev: Maybe<Scalars['String']>;
@@ -4238,6 +4296,7 @@ export type SanityService = Node & SanityDocument & {
   metaDescription: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   parent: Maybe<Node>;
+  selectionImage: Maybe<SanityImageWithAlt>;
   selections: Maybe<Array<Maybe<SanitySelection>>>;
   slug: Maybe<SanitySlug>;
 };
@@ -4257,6 +4316,11 @@ export type SanityService_RawIconArgs = {
 
 
 export type SanityService_RawImagesArgs = {
+  resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+};
+
+
+export type SanityService_RawSelectionImageArgs = {
   resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -4331,6 +4395,7 @@ export enum SanityServiceFieldsEnum {
   _key = '_key',
   _rawIcon = '_rawIcon',
   _rawImages = '_rawImages',
+  _rawSelectionImage = '_rawSelectionImage',
   _rawSelections = '_rawSelections',
   _rawSlug = '_rawSlug',
   _rev = '_rev',
@@ -4517,6 +4582,51 @@ export enum SanityServiceFieldsEnum {
   parent___parent___internal___type = 'parent___parent___internal___type',
   parent___parent___parent___children = 'parent___parent___parent___children',
   parent___parent___parent___id = 'parent___parent___parent___id',
+  selectionImage____key = 'selectionImage____key',
+  selectionImage____rawImage = 'selectionImage____rawImage',
+  selectionImage____type = 'selectionImage____type',
+  selectionImage___alt = 'selectionImage___alt',
+  selectionImage___image____key = 'selectionImage___image____key',
+  selectionImage___image____rawAsset = 'selectionImage___image____rawAsset',
+  selectionImage___image____rawCrop = 'selectionImage___image____rawCrop',
+  selectionImage___image____rawHotspot = 'selectionImage___image____rawHotspot',
+  selectionImage___image____type = 'selectionImage___image____type',
+  selectionImage___image___asset____createdAt = 'selectionImage___image___asset____createdAt',
+  selectionImage___image___asset____id = 'selectionImage___image___asset____id',
+  selectionImage___image___asset____key = 'selectionImage___image___asset____key',
+  selectionImage___image___asset____rawMetadata = 'selectionImage___image___asset____rawMetadata',
+  selectionImage___image___asset____rawSource = 'selectionImage___image___asset____rawSource',
+  selectionImage___image___asset____rev = 'selectionImage___image___asset____rev',
+  selectionImage___image___asset____type = 'selectionImage___image___asset____type',
+  selectionImage___image___asset____updatedAt = 'selectionImage___image___asset____updatedAt',
+  selectionImage___image___asset___altText = 'selectionImage___image___asset___altText',
+  selectionImage___image___asset___assetId = 'selectionImage___image___asset___assetId',
+  selectionImage___image___asset___children = 'selectionImage___image___asset___children',
+  selectionImage___image___asset___description = 'selectionImage___image___asset___description',
+  selectionImage___image___asset___extension = 'selectionImage___image___asset___extension',
+  selectionImage___image___asset___gatsbyImageData = 'selectionImage___image___asset___gatsbyImageData',
+  selectionImage___image___asset___id = 'selectionImage___image___asset___id',
+  selectionImage___image___asset___label = 'selectionImage___image___asset___label',
+  selectionImage___image___asset___mimeType = 'selectionImage___image___asset___mimeType',
+  selectionImage___image___asset___originalFilename = 'selectionImage___image___asset___originalFilename',
+  selectionImage___image___asset___path = 'selectionImage___image___asset___path',
+  selectionImage___image___asset___sha1hash = 'selectionImage___image___asset___sha1hash',
+  selectionImage___image___asset___size = 'selectionImage___image___asset___size',
+  selectionImage___image___asset___title = 'selectionImage___image___asset___title',
+  selectionImage___image___asset___uploadId = 'selectionImage___image___asset___uploadId',
+  selectionImage___image___asset___url = 'selectionImage___image___asset___url',
+  selectionImage___image___crop____key = 'selectionImage___image___crop____key',
+  selectionImage___image___crop____type = 'selectionImage___image___crop____type',
+  selectionImage___image___crop___bottom = 'selectionImage___image___crop___bottom',
+  selectionImage___image___crop___left = 'selectionImage___image___crop___left',
+  selectionImage___image___crop___right = 'selectionImage___image___crop___right',
+  selectionImage___image___crop___top = 'selectionImage___image___crop___top',
+  selectionImage___image___hotspot____key = 'selectionImage___image___hotspot____key',
+  selectionImage___image___hotspot____type = 'selectionImage___image___hotspot____type',
+  selectionImage___image___hotspot___height = 'selectionImage___image___hotspot___height',
+  selectionImage___image___hotspot___width = 'selectionImage___image___hotspot___width',
+  selectionImage___image___hotspot___x = 'selectionImage___image___hotspot___x',
+  selectionImage___image___hotspot___y = 'selectionImage___image___hotspot___y',
   selections = 'selections',
   selections____key = 'selections____key',
   selections____type = 'selections____type',
@@ -4535,6 +4645,7 @@ export type SanityServiceFilterInput = {
   _key: InputMaybe<StringQueryOperatorInput>;
   _rawIcon: InputMaybe<JsonQueryOperatorInput>;
   _rawImages: InputMaybe<JsonQueryOperatorInput>;
+  _rawSelectionImage: InputMaybe<JsonQueryOperatorInput>;
   _rawSelections: InputMaybe<JsonQueryOperatorInput>;
   _rawSlug: InputMaybe<JsonQueryOperatorInput>;
   _rev: InputMaybe<StringQueryOperatorInput>;
@@ -4550,6 +4661,7 @@ export type SanityServiceFilterInput = {
   metaDescription: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
+  selectionImage: InputMaybe<SanityImageWithAltFilterInput>;
   selections: InputMaybe<SanitySelectionFilterListInput>;
   slug: InputMaybe<SanitySlugFilterInput>;
 };
@@ -6091,6 +6203,364 @@ export enum SortOrderEnum {
   DESC = 'DESC'
 }
 
+export type StaticImage = Node & {
+  __typename?: 'StaticImage';
+  absolutePath: Maybe<Scalars['String']>;
+  accessTime: Maybe<Scalars['Date']>;
+  atime: Maybe<Scalars['Date']>;
+  atimeMs: Maybe<Scalars['Float']>;
+  base: Maybe<Scalars['String']>;
+  birthTime: Maybe<Scalars['Date']>;
+  birthtime: Maybe<Scalars['Date']>;
+  birthtimeMs: Maybe<Scalars['Float']>;
+  blksize: Maybe<Scalars['Int']>;
+  blocks: Maybe<Scalars['Int']>;
+  changeTime: Maybe<Scalars['Date']>;
+  children: Array<Node>;
+  ctime: Maybe<Scalars['Date']>;
+  ctimeMs: Maybe<Scalars['Float']>;
+  dev: Maybe<Scalars['Float']>;
+  dir: Maybe<Scalars['String']>;
+  ext: Maybe<Scalars['String']>;
+  extension: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  ino: Maybe<Scalars['Float']>;
+  internal: Internal;
+  mode: Maybe<Scalars['Int']>;
+  modifiedTime: Maybe<Scalars['Date']>;
+  mtime: Maybe<Scalars['Date']>;
+  mtimeMs: Maybe<Scalars['Float']>;
+  name: Maybe<Scalars['String']>;
+  nlink: Maybe<Scalars['Int']>;
+  parent: Maybe<Node>;
+  prettySize: Maybe<Scalars['String']>;
+  rdev: Maybe<Scalars['Int']>;
+  relativeDirectory: Maybe<Scalars['String']>;
+  relativePath: Maybe<Scalars['String']>;
+  root: Maybe<Scalars['String']>;
+  size: Maybe<Scalars['Int']>;
+  sourceInstanceName: Maybe<Scalars['String']>;
+  uid: Maybe<Scalars['Int']>;
+};
+
+
+export type StaticImageAccessTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageAtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageBirthTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageBirthtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageChangeTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageCtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageModifiedTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+export type StaticImageMtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+export type StaticImageConnection = {
+  __typename?: 'StaticImageConnection';
+  distinct: Array<Scalars['String']>;
+  edges: Array<StaticImageEdge>;
+  group: Array<StaticImageGroupConnection>;
+  max: Maybe<Scalars['Float']>;
+  min: Maybe<Scalars['Float']>;
+  nodes: Array<StaticImage>;
+  pageInfo: PageInfo;
+  sum: Maybe<Scalars['Float']>;
+  totalCount: Scalars['Int'];
+};
+
+
+export type StaticImageConnectionDistinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionGroupArgs = {
+  field: StaticImageFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+export type StaticImageConnectionMaxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionMinArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageConnectionSumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+export type StaticImageEdge = {
+  __typename?: 'StaticImageEdge';
+  next: Maybe<StaticImage>;
+  node: StaticImage;
+  previous: Maybe<StaticImage>;
+};
+
+export enum StaticImageFieldsEnum {
+  absolutePath = 'absolutePath',
+  accessTime = 'accessTime',
+  atime = 'atime',
+  atimeMs = 'atimeMs',
+  base = 'base',
+  birthTime = 'birthTime',
+  birthtime = 'birthtime',
+  birthtimeMs = 'birthtimeMs',
+  blksize = 'blksize',
+  blocks = 'blocks',
+  changeTime = 'changeTime',
+  children = 'children',
+  children___children = 'children___children',
+  children___children___children = 'children___children___children',
+  children___children___children___children = 'children___children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___id = 'children___children___id',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___parent___id = 'children___children___parent___id',
+  children___id = 'children___id',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___parent___id = 'children___parent___parent___id',
+  ctime = 'ctime',
+  ctimeMs = 'ctimeMs',
+  dev = 'dev',
+  dir = 'dir',
+  ext = 'ext',
+  extension = 'extension',
+  id = 'id',
+  ino = 'ino',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  mode = 'mode',
+  modifiedTime = 'modifiedTime',
+  mtime = 'mtime',
+  mtimeMs = 'mtimeMs',
+  name = 'name',
+  nlink = 'nlink',
+  parent___children = 'parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___id = 'parent___children___id',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___id = 'parent___id',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  prettySize = 'prettySize',
+  rdev = 'rdev',
+  relativeDirectory = 'relativeDirectory',
+  relativePath = 'relativePath',
+  root = 'root',
+  size = 'size',
+  sourceInstanceName = 'sourceInstanceName',
+  uid = 'uid'
+}
+
+export type StaticImageFilterInput = {
+  absolutePath: InputMaybe<StringQueryOperatorInput>;
+  accessTime: InputMaybe<DateQueryOperatorInput>;
+  atime: InputMaybe<DateQueryOperatorInput>;
+  atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  base: InputMaybe<StringQueryOperatorInput>;
+  birthTime: InputMaybe<DateQueryOperatorInput>;
+  birthtime: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  blksize: InputMaybe<IntQueryOperatorInput>;
+  blocks: InputMaybe<IntQueryOperatorInput>;
+  changeTime: InputMaybe<DateQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  ctime: InputMaybe<DateQueryOperatorInput>;
+  ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  dev: InputMaybe<FloatQueryOperatorInput>;
+  dir: InputMaybe<StringQueryOperatorInput>;
+  ext: InputMaybe<StringQueryOperatorInput>;
+  extension: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  ino: InputMaybe<FloatQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  mode: InputMaybe<IntQueryOperatorInput>;
+  modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  mtime: InputMaybe<DateQueryOperatorInput>;
+  mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  nlink: InputMaybe<IntQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prettySize: InputMaybe<StringQueryOperatorInput>;
+  rdev: InputMaybe<IntQueryOperatorInput>;
+  relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  relativePath: InputMaybe<StringQueryOperatorInput>;
+  root: InputMaybe<StringQueryOperatorInput>;
+  size: InputMaybe<IntQueryOperatorInput>;
+  sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type StaticImageGroupConnection = {
+  __typename?: 'StaticImageGroupConnection';
+  distinct: Array<Scalars['String']>;
+  edges: Array<StaticImageEdge>;
+  field: Scalars['String'];
+  fieldValue: Maybe<Scalars['String']>;
+  group: Array<StaticImageGroupConnection>;
+  max: Maybe<Scalars['Float']>;
+  min: Maybe<Scalars['Float']>;
+  nodes: Array<StaticImage>;
+  pageInfo: PageInfo;
+  sum: Maybe<Scalars['Float']>;
+  totalCount: Scalars['Int'];
+};
+
+
+export type StaticImageGroupConnectionDistinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionGroupArgs = {
+  field: StaticImageFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+export type StaticImageGroupConnectionMaxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionMinArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+export type StaticImageGroupConnectionSumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+export type StaticImageSortInput = {
+  fields: InputMaybe<Array<InputMaybe<StaticImageFieldsEnum>>>;
+  order: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
+};
+
 export type StringQueryOperatorInput = {
   eq: InputMaybe<Scalars['String']>;
   glob: InputMaybe<Scalars['String']>;
@@ -6180,7 +6650,7 @@ export type ServicePageQueryVariables = Exact<{
 }>;
 
 
-export type ServicePageQuery = { __typename?: 'Query', service: { __typename?: 'SanityService', id: string, name: string, description: string, metaDescription: string, selections: Array<{ __typename?: 'SanitySelection', description: string, name: string, price: number, unit: string }>, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }> }, otherServices: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> }, availableLocations: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string }, geopoint: { __typename?: 'SanityGeopoint', lat: number, lng: number } }> } };
+export type ServicePageQuery = { __typename?: 'Query', service: { __typename?: 'SanityService', id: string, name: string, description: string, metaDescription: string, selections: Array<{ __typename?: 'SanitySelection', description: string, name: string, price: number, unit: string }>, selectionImage: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }, images: Array<{ __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any }, hotspot: { __typename?: 'SanityImageHotspot', y: number, x: number } } }> }, otherServices: { __typename?: 'SanityServiceConnection', nodes: Array<{ __typename?: 'SanityService', id: string, name: string, description: string, slug: { __typename?: 'SanitySlug', current: string }, icon: { __typename?: 'SanityImageWithAlt', alt: string, image: { __typename?: 'SanityImage', asset: { __typename?: 'SanityImageAsset', gatsbyImageData: any } } } }> }, availableLocations: { __typename?: 'SanityLocationConnection', nodes: Array<{ __typename?: 'SanityLocation', id: string, name: string, address: string, slug: { __typename?: 'SanitySlug', current: string }, geopoint: { __typename?: 'SanityGeopoint', lat: number, lng: number } }> } };
 
 export type ContactUsQueryVariables = Exact<{ [key: string]: never; }>;
 
