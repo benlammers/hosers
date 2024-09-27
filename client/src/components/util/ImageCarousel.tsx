@@ -7,8 +7,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const isClient = typeof window !== 'undefined';
-
 SwiperCore.use([Pagination, Navigation]);
 
 interface Props {
@@ -56,10 +54,12 @@ export const Carousel: React.FC<Props> = ({ images }) => {
 };
 
 export const ImageCarousel: React.FC<Props> = ({ images }) => {
+   const isClient = typeof window !== 'undefined';
+
    if (isClient)
       return (
          <div className="w-full mx-auto">
-            <Carousel images={images} />;
+            <Carousel images={images} />
          </div>
       );
    return null;

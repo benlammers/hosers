@@ -20,7 +20,7 @@ async function createServicePages(graphql, actions) {
    const serviceNodes = (result.data.allSanityService || {}).nodes || [];
 
    serviceNodes.forEach((service) => {
-      // Desctructure the id and slug fields for each category
+      // Destructure the id and slug fields for each category
       const { id, slug = {} } = service;
       // If there isn't a slug, we want to do nothing
       if (!slug) return;
@@ -57,7 +57,7 @@ async function createLocationPages(graphql, actions) {
    const locationNodes = (result.data.allSanityLocation || {}).nodes || [];
 
    locationNodes.forEach((location) => {
-      // Desctructure the id and slug fields for each category
+      // Destructure the id and slug fields for each category
       const { id, slug = {} } = location;
       // If there isn't a slug, we want to do nothing
       if (!slug) return;
