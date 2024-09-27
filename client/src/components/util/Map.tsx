@@ -113,27 +113,28 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
 
    return (
       <div className="h-96 md:h-[32rem]">
-         {isClient && (
+         {isClient ? (
             <React.Suspense fallback={<div />}>
-            <GoogleMapReact
-               options={{ zoomControlOptions: { position: 1 } }}
-               bootstrapURLKeys={{ key: 'AIzaSyCg0elWS1p3sqMdoYCQTZooyp_g5qTEAzg' }}
-               center={center}
-               zoom={zoom}
-               onChange={handleMapChange}
-            >
-               {locations.map((location, index) => (
-                  <MapMarker
-                     key={index}
-                     {...location.geopoint}
-                     location={location}
-                     isFocused={location.id === focusedId}
-                     handleMarkerClick={handleMarkerClick}
-                     handleMarkerClose={handleMarkerClose}
-                  />
-               ))}
-            </GoogleMapReact></React.Suspense>
-         )}
+               <GoogleMapReact
+                  options={{ zoomControlOptions: { position: 1 } }}
+                  bootstrapURLKeys={{ key: 'AIzaSyCg0elWS1p3sqMdoYCQTZooyp_g5qTEAzg' }}
+                  center={center}
+                  zoom={zoom}
+                  onChange={handleMapChange}
+               >
+                  {locations.map((location, index) => (
+                     <MapMarker
+                        key={index}
+                        {...location.geopoint}
+                        location={location}
+                        isFocused={location.id === focusedId}
+                        handleMarkerClick={handleMarkerClick}
+                        handleMarkerClose={handleMarkerClose}
+                     />
+                  ))}
+               </GoogleMapReact>
+            </React.Suspense>
+         ) : <div>Testing</div>}
       </div>
    );
 };
