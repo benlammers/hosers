@@ -7,6 +7,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+SwiperCore.use([Pagination, Navigation]);
+
 interface Props {
    images: {
       __typename?: 'SanityImageWithAlt';
