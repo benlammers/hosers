@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import GoogleMapReact from 'google-map-react';
 import { LocationIcon } from '../icons/LocationIcon';
 import { Link } from 'gatsby';
 import { ChevronRightIcon } from '../icons/ChevronRightIcon';
 import { DirectionIcon } from '../icons/DirectionIcon';
 import { CrossIcon } from '../icons/CrossIcon';
+import { Coords, ChangeEventValue } from 'google-map-react';
 
-const isClient = typeof window !== 'undefined';
+const GoogleMapReact = React.lazy(() =>
+  import("google-map-react")
+)
 
 type MapLocation = {
    id: string;
@@ -64,7 +66,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({ location, isFocused, handleMarker
    );
 };
 
-const getCenter = (locations: MapLocation[], focusedId): GoogleMapReact.Coords => {
+const getCenter = (locations: MapLocation[], focusedId): Coords => {
    if (focusedId) {
       return locations.find((location) => location.id === focusedId).geopoint;
    } else {
@@ -82,7 +84,9 @@ interface MapProps {
 export const Map: React.FC<MapProps> = ({ locations }) => {
    const [focusedId, setFocusedId] = useState<string>(locations.length === 1 ? locations[0].id : '');
    const [zoom, setZoom] = useState<number>(11);
-   const [center, setCenter] = useState<GoogleMapReact.Coords>(getCenter(locations, focusedId));
+   const [center, setCenter] = useState<Coords>(getCenter(locations, focusedId));
+
+   const isClient = typeof window !== 'undefined';
 
    const handleMarkerClick = (id: string) => {
       setFocusedId(id);
@@ -92,7 +96,7 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
       setFocusedId(undefined);
    };
 
-   const handleMapChange = (e: GoogleMapReact.ChangeEventValue) => {
+   const handleMapChange = (e: ChangeEventValue) => {
       setZoom(e.zoom);
       setCenter(e.center);
    };

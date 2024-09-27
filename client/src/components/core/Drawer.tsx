@@ -16,7 +16,7 @@ export const Drawer: React.FC<Props> = ({ isOpen, close }) => {
 
    const handleNavigation = (path: Path) => {
       navigate(PathData[path].path);
-      close();
+      close?.();
    };
 
    return (
