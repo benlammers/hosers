@@ -44,7 +44,7 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                <DirectionIcon className="w-5 h-5" />
             </a>
          </Wrapper>
-         <ImageCarousel images={location.images} />
+         {/* <ImageCarousel images={location.images} /> */}
          <Wrapper className="pb-16">
             <Heading border="border-hosers-blue">
                <h2 className="text-3xl font-bold">Services at Location</h2>
@@ -55,7 +55,7 @@ const Location: React.FC<PageProps<LocationPageQuery>> = ({ data }) => {
                ))}
             </div>
          </Wrapper>
-         <Map locations={[location]} />
+         {/* <Map locations={[location]} /> */}
          <Wrapper className="pb-16">
             <Heading border="border-hosers-red">
                <h2 className="text-3xl font-bold">Other Locations</h2>
