@@ -68,7 +68,7 @@ const MapMarker: React.FC<MapMarkerProps> = ({ location, isFocused, handleMarker
 
 const getCenter = (locations: MapLocation[], focusedId): Coords => {
    if (focusedId) {
-      return locations.find((location) => location.id === focusedId).geopoint;
+      return locations.find((location) => location.id === focusedId)!.geopoint;
    } else {
       return {
          lat: locations.reduce((acc, curr) => acc + curr.geopoint.lat, 0) / locations.length,
@@ -82,18 +82,22 @@ interface MapProps {
 }
 
 export const Map: React.FC<MapProps> = ({ locations }) => {
-   const [focusedId, setFocusedId] = useState<string>(locations.length === 1 ? locations[0].id : '');
+   const [focusedId, setFocusedId] = useState<string | null>(locations.length === 1 ? locations[0].id : null);
    const [zoom, setZoom] = useState<number>(11);
    const [center, setCenter] = useState<Coords>(getCenter(locations, focusedId));
 
-   const isClient = typeof window !== 'undefined';
+   const [isClient, setIsClient] = useState(typeof window !== 'undefined');
+
+   useEffect(() => {
+      setIsClient(typeof window !== 'undefined');
+   }, [])
 
    const handleMarkerClick = (id: string) => {
       setFocusedId(id);
    };
 
    const handleMarkerClose = () => {
-      setFocusedId(undefined);
+      setFocusedId(null);
    };
 
    const handleMapChange = (e: ChangeEventValue) => {

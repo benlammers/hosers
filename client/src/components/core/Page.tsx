@@ -4,6 +4,7 @@ import { Header } from './Header';
 
 interface Props {
    className?: string;
+   children?: React.ReactNode;
 }
 
 export const Page: React.FC<Props> = ({ children, className }) => {

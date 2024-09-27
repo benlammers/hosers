@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { HotspotImage } from './HotspotImage';
@@ -54,7 +54,11 @@ export const Carousel: React.FC<Props> = ({ images }) => {
 };
 
 export const ImageCarousel: React.FC<Props> = ({ images }) => {
-   const isClient = typeof window !== 'undefined';
+   const [isClient, setIsClient] = useState(typeof window !== 'undefined');
+
+   useEffect(() => {
+      setIsClient(typeof window !== 'undefined');
+   }, [])
 
    if (isClient)
       return (
