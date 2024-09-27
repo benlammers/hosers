@@ -110,6 +110,7 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
    return (
       <div className="h-96 md:h-[32rem]">
          {isClient && (
+            <React.Suspense fallback={<div />}>
             <GoogleMapReact
                options={{ zoomControlOptions: { position: 1 } }}
                bootstrapURLKeys={{ key: 'AIzaSyCg0elWS1p3sqMdoYCQTZooyp_g5qTEAzg' }}
@@ -127,7 +128,7 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
                      handleMarkerClose={handleMarkerClose}
                   />
                ))}
-            </GoogleMapReact>
+            </GoogleMapReact></React.Suspense>
          )}
       </div>
    );
