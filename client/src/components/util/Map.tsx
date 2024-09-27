@@ -113,7 +113,8 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
 
    return (
       <div className="h-96 md:h-[32rem]">
-         {isClient ? (
+         <div className="h-full w-full bg-green-200" />
+         {/* {isClient ? (
             <React.Suspense fallback={<div />}>
                <GoogleMapReact
                   options={{ zoomControlOptions: { position: 1 } }}
@@ -134,7 +135,7 @@ export const Map: React.FC<MapProps> = ({ locations }) => {
                   ))}
                </GoogleMapReact>
             </React.Suspense>
-         ) : <div>Testing</div>}
+         ) : <div className="h-full w-full bg-green-200" />} */}
       </div>
    );
 };

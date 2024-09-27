@@ -2,6 +2,7 @@ import React from 'react';
 
 interface Props {
    border: 'border-hosers-blue' | 'border-hosers-red';
+   children?: React.ReactNode;
 }
 
 export const Heading: React.FC<Props> = ({ border, children }) => {
