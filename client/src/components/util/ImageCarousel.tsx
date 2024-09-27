@@ -7,8 +7,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-SwiperCore.use([Pagination, Navigation]);
-
 interface Props {
    images: {
       __typename?: 'SanityImageWithAlt';
@@ -57,14 +55,21 @@ export const ImageCarousel: React.FC<Props> = ({ images }) => {
    const [isClient, setIsClient] = useState(typeof window !== 'undefined');
 
    useEffect(() => {
+      SwiperCore.use([Pagination, Navigation]);
+   }, [])
+
+   useEffect(() => {
       setIsClient(typeof window !== 'undefined');
    }, [])
 
-   if (isClient)
-      return (
-         <div className="w-full mx-auto">
-            <Carousel images={images} />
-         </div>
-      );
-   return null;
+   return (
+      <div className="w-full mx-auto">
+         {renderContent()}
+      </div>
+   )
+
+   function renderContent() {
+      if (isClient) return <Carousel images={images} />
+      return null;
+   }
 };
